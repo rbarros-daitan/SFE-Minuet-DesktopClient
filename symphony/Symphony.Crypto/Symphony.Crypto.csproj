@@ -35,10 +35,10 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vendor\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\external_binaries\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Paragon.Plugins">
-      <HintPath>..\..\vendor\Paragon.Plugins.dll</HintPath>
+      <HintPath>..\..\vendor\SFE-Minuet-DesktopClient\bin\Paragon.Plugins.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />

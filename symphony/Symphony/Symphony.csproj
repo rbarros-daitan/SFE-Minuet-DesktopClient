@@ -39,16 +39,16 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vendor\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\external_binaries\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Paragon.Plugins">
-      <HintPath>..\..\vendor\Paragon.Plugins.dll</HintPath>
+      <HintPath>..\..\vendor\SFE-Minuet-DesktopClient\bin\Paragon.Plugins.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Threading">
-      <HintPath>..\..\vendor\System.Threading.dll</HintPath>
+      <HintPath>..\..\external_binaries\System.Threading.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Windows.Forms" />
@@ -120,11 +120,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\vendor\msvcp120.dll">
+    <Content Include="..\..\external_binaries\msvcp120.dll">
       <Link>msvcp120.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vendor\msvcr120.dll">
+    <Content Include="..\..\external_binaries\msvcr120.dll">
       <Link>msvcr120.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -158,22 +158,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\vendor\msvcp120.dll">
+    <Content Include="..\..\external_binaries\msvcp120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vendor\msvcr120.dll">
+    <Content Include="..\..\external_binaries\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vendor\libeay32.dll">
+    <Content Include="..\..\external_binaries\libeay32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vendor\SFE-CryptoLib-Project.dll">
+    <Content Include="..\..\external_binaries\SFE-CryptoLib-Project.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vendor\ssleay32.dll">
+    <Content Include="..\..\external_binaries\ssleay32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vendor\zlib.dll">
+    <Content Include="..\..\external_binaries\zlib.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
