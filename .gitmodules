@@ -1,0 +1,3 @@
+[submodule "vendor/SFE-Minuet-DesktopClient"]
+	path = vendor/SFE-Minuet-DesktopClient
+	url = https://github.com/SymphonyOSF/SFE-Minuet-DesktopClient.git
