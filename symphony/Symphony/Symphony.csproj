@@ -43,7 +43,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Paragon.Plugins">
-      <HintPath>..\..\vendor\SFE-Minuet-DesktopClient\bin\Paragon.Plugins.dll</HintPath>
+      <HintPath>..\..\vendor\SFE-Minuet-DesktopClient\bin\paragon\Paragon.Plugins.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -188,4 +188,7 @@
   <PropertyGroup>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
+  <Target Name="AfterBuild">
+    <Exec Command="$(SolutionDir)vendor\SFE-Minuet-DesktopClient\bin\paragon\Paragon.AppPackager --i:$(TargetDir) --o:$(SolutionDir)bin\out\$(AssemblyName).pgx" />
+  </Target>
 </Project>

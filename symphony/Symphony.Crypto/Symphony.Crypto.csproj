@@ -38,7 +38,7 @@
       <HintPath>..\..\external_binaries\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Paragon.Plugins">
-      <HintPath>..\..\vendor\SFE-Minuet-DesktopClient\bin\Paragon.Plugins.dll</HintPath>
+      <HintPath>..\..\vendor\SFE-Minuet-DesktopClient\bin\paragon\Paragon.Plugins.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
