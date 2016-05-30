@@ -1,5 +1,7 @@
 echo "make output dirs"
+md bin
 md bin\apps
+md bin\minuet
 
 echo "Set Visual Studio env vars"
 $path1='c:\Program Files (x86)\Microsoft Visual Studio 12.0\VC'
@@ -22,8 +24,21 @@ write-host "`nVisual Studio 2013 Command Prompt variables set." -ForegroundColor
 
 Function Build([string]$config, [string]$platform)
 {
-	msbuild symphony.sln /t:clean /p:Configuration=$config /p:Platform=$platform
-	msbuild symphony.sln /t:rebuild /p:Configuration=$config /p:Platform=$platform
+	echo "Starting $config $platform build"
+
+	cd vendor\SFE-Minuet-DesktopClient
+	msbuild Minuet.sln /t:clean /p:Configuration=$config /p:Platform=$platform
+	msbuild Minuet.sln /t:rebuild /p:Configuration=$config /p:Platform=$platform
+	$last=$?
+	if ($last -eq $False) 
+	{
+		write-host "failed building $config $platform"
+		exit -1 
+	}
+	
+	cd ..\..
+	msbuild Symphony.sln /t:clean /p:Configuration=$config /p:Platform=$platform
+	msbuild Symphony.sln /t:rebuild /p:Configuration=$config /p:Platform=$platform
 	$last=$?
 	if ($last -eq $False) 
 	{
