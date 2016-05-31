@@ -15,20 +15,20 @@ mkdir targets
 set targetsDir="%CD%\targets\"
 
 rem tools dependencies, must be in your path
-set zip=7z.exe
+rem set zip=7z.exe
 
 set archiveName=DesktopClient-Win-x86-%WRAPPER_VER%
 
-echo "create exec zip"
-cd minuet\symphony\bin
-set zipArchive=%archiveName%.zip
-%zip% a -x!*.pdb -x!*app.publish -tZip %zipArchive%
-xcopy %zipArchive% %targetsDir%
-cd ..\..\..
+rem echo "create exec zip"
+rem cd minuet\symphony\bin
+rem set zipArchive=%archiveName%.zip
+rem %zip% a -x!*.pdb -x!*app.publish -tZip %zipArchive%
+rem xcopy %zipArchive% %targetsDir%
+rem cd ..\..\..
 
 echo "creating msi %proc%"
 
-set installerDir=%CD%\minuet\symphony\Installer
+set installerDir=%CD%\installer
 
 set pfxFile=Wrapper.Windows.Product.RSA.pkcs12.pfx
 if NOT EXIST "%CEFDIR%\%pfxFile%" (
