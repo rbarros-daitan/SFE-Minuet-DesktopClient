@@ -1,7 +1,7 @@
-echo "make output dirs"
-md bin
-md bin\apps
-md bin\minuet
+# echo "make dir where build artifacts will be copied"
+# md artifacts
+# md artifacts\apps
+# md artifacts\minuet
 
 echo "Set Visual Studio env vars"
 $path1='c:\Program Files (x86)\Microsoft Visual Studio 12.0\VC'
