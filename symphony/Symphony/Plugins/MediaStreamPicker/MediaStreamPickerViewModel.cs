@@ -142,15 +142,18 @@ namespace Symphony.Plugins.MediaStreamPicker
             streams.Clear();
             mediaStreams.Clear();
 
+            // Note:
+            // :0 needed on the end in chromium 49+
+            // see discussion here: https://bitbucket.org/chromiumembedded/cef/issues/1065/add-support-for-webrtc-based-screen
             foreach (EnumScreenResult screen in screens)
             {
                 addToStreams(screen.title, screen.image);
-                mediaStreams.Add("screen:" + screen.id);
+                mediaStreams.Add("screen:" + screen.id + ":0");
             }
             foreach (EnumWindowResult window in windows)
             {
                 addToStreams(window.title, window.image);
-                mediaStreams.Add("window:" + window.hWnd.ToString());
+                mediaStreams.Add("window:" + window.hWnd.ToString() + ":0");
             }
 
             Streams = streams;
