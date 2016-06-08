@@ -63,9 +63,13 @@ namespace Symphony.Plugins.MediaStreamPicker
 
         void window_Loaded(object sender, RoutedEventArgs e)
         {
-            _viewHwnd = getWindowHwnd(_viewWindow); 
+            _viewHwnd = getWindowHwnd(_viewWindow);
+            
+            // initial build - this blocks ui - necessary to get window sized and centered correctly
+            _onTimer(null);
+
             // runs on a seperate thread, because enumeration is expensive and interferes with ui thread.
-            _timer = new System.Threading.Timer(_onTimer, null, new TimeSpan(0), new TimeSpan(0, 0, 3));
+            _timer = new System.Threading.Timer(_onTimer, null, new TimeSpan(0, 0, 3), new TimeSpan(0, 0, 3));
         }
 
         void window_Unloaded(object sender, RoutedEventArgs e)

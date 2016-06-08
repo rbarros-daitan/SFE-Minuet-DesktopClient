@@ -91,7 +91,12 @@ namespace Symphony.Plugins.MediaStreamPicker
                 // freeze needed since we are creating on a separate thread
                 bitmapSrc.Freeze();
 
-                string title = screen.Primary ? "Primary Screen" : "Screen " + (id + 1);
+                string title;
+
+                if (screen.Primary && screens.Length == 1)
+                    title = "Entire Screen";
+                else
+                    title = "Screen " + (id + 1);
                 
                 results.Add(new EnumScreenResult(id, title, bitmapSrc));
                 id++;
