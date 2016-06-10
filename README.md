@@ -1,6 +1,7 @@
 "# SFE-DesktopClient-pgx" 
 
 To build:
+
 1. checkout submodule by doing:
 - git submodule init
 - git submodule update
