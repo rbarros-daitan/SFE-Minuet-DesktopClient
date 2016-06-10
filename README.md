@@ -5,6 +5,7 @@ Build and Run instructions...
 ## Checkout submodule
 - git submodule init
 - git submodule update
+
 note: submodule is the minuet core.
 
 ## Open visual studio solns
@@ -20,6 +21,7 @@ note: use visual studio 2013 or higher
 - open project properities
 - goto Debug tab
 - in 'Command line arguments' add following:
+
 C:\Users\{username}\github\SFE-DesktopClient-pgx\vendor\SFE-Minuet-DesktopClient\bin\paragon\paragon.exe /start-app="C:\Users\{username}\github\SFE-DesktopClient-pgx\bin\out\Symphony.pgx" /env=development --enable-media-stream
 
 where c:\Users\{username}\github is your path to where you cloned project.
