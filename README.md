@@ -1,20 +1,20 @@
 "# SFE-DesktopClient-pgx" 
 
-To build:
+Build and Run instructions...
 
-1. checkout submodule by doing:
+## Checkout submodule
 - git submodule init
 - git submodule update
 note: submodule is the minuet core.
 
-2.open visual studio solns:
+## Open visual studio solns
 note: use visual studio 2013 or higher
 - Symphony.sln
 - vendor/SFE-Minute-DesktopClient/Minuet.sln
 
-3. build both
+## Build both solns
 
-To run:
+## To run
 - in Minuet.sln goto project Paragon
 - right click on this project and select: 'Set as StartUp Project'
 - open project properities
