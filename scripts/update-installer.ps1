@@ -12,10 +12,10 @@ if ((Test-Path $hashedPasswdFile) -eq $False) {
 
 $hasedPasswd = [IO.File]::ReadAllText($hashedPasswdFile)
 
-$installerFile = $installerDir + '\Symphony-x86.aip'
-if if ((Test-Path $installerFile) -eq $False) {
+$installerFile = 'installer\Symphony-x86.aip'
+if ((Test-Path $installerFile) -eq $False) {
 	echo "can not find installer file in " $installerFile
 	exit -1
-)
+}
 
-(get-content $installerFile) | foreach-object {$_ -replace "replace-with-hashed-passwd", $hasedPasswd} | set-content $installerFile
+(get-content $installerFile) | foreach-object {$_ -replace "4A99BAA4D493EE030480AF53BA42EA11CCFB627AB1800400DA9692073D68C522A10A4FD0B5F78525294E51AC7194D55B5EE1D31F", $hasedPasswd} | set-content $installerFile
