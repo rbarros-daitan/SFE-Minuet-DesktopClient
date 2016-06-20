@@ -141,7 +141,7 @@
     <ROW File="libcef.dll" Component_="libcef.dll" FileName="libcef.dll" Attributes="0" SourcePath="..\vendor\SFE-Minuet-DesktopClient\bin\paragon\libcef.dll" SelfReg="false" NextFile="libEGL.dll"/>
     <ROW File="lt.pak" Component_="am.pak" FileName="lt.pak" Attributes="0" SourcePath="..\vendor\SFE-Minuet-DesktopClient\bin\paragon\locales\lt.pak" SelfReg="false" NextFile="lv.pak"/>
     <ROW File="lv.pak" Component_="am.pak" FileName="lv.pak" Attributes="0" SourcePath="..\vendor\SFE-Minuet-DesktopClient\bin\paragon\locales\lv.pak" SelfReg="false" NextFile="ml.pak"/>
-    <ROW File="messagebus.jar" Component_="cef.pak" FileName="MESSAG~1.JAR|messagebus.jar" Attributes="0" SourcePath="..\vendor\SFE-Minuet-DesktopClient\messagebus\target\messagebus.jar" SelfReg="false" NextFile="am.pak"/>
+    <ROW File="messagebus.jar" Component_="cef.pak" FileName="MESSAG~1.JAR|messagebus.jar" Attributes="0" SourcePath="..\vendor\SFE-Minuet-DesktopClient\messagebus\messagebus.jar" SelfReg="false" NextFile="am.pak"/>
     <ROW File="ml.pak" Component_="am.pak" FileName="ml.pak" Attributes="0" SourcePath="..\vendor\SFE-Minuet-DesktopClient\bin\paragon\locales\ml.pak" SelfReg="false" NextFile="mr.pak"/>
     <ROW File="mr.pak" Component_="am.pak" FileName="mr.pak" Attributes="0" SourcePath="..\vendor\SFE-Minuet-DesktopClient\bin\paragon\locales\mr.pak" SelfReg="false" NextFile="ms.pak"/>
     <ROW File="ms.pak" Component_="am.pak" FileName="ms.pak" Attributes="0" SourcePath="..\vendor\SFE-Minuet-DesktopClient\bin\paragon\locales\ms.pak" SelfReg="false" NextFile="nb.pak"/>
