@@ -68,10 +68,15 @@
             "name": "Symphony.Plugins.ActivityPlugin",
             "assembly": "Symphony.dll"
         },
-	{
+        {
             "name": "Symphony.Plugins.GetWindowsPlugin",
-            "assembly":  "Symphony.dll"
+            "assembly": "Symphony.dll"
+        },
+        {
+            "name": "Symphony.Plugins.ProtocolHandlerPlugin",
+            "assembly": "Symphony.dll"
         }
+
     ],
     "customTheme" : "SymphonyTheme.xaml"
 }

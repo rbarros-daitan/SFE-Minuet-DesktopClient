@@ -66,6 +66,7 @@
     <Compile Include="Configuration\SymphonySettingReader.cs" />
     <Compile Include="Configuration\LegacySymphonySettings.cs" />
     <Compile Include="Configuration\Model\WindowPlacement.cs" />
+    <Compile Include="Plugins\ProtocolHandlerPlugin.cs" />
     <Compile Include="Plugins\AppWindowPlugin.cs" />
     <Compile Include="Plugins\GetWindowsPlugin.cs" />
     <Compile Include="Plugins\CachePlugin.cs" />
