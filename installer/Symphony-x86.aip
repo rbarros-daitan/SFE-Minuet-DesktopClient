@@ -51,6 +51,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="AI_CustomARPName" ComponentId="{2817ACD9-F494-4729-9830-111EF3311CFA}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="Microsoft.Windows.Shell.dll" ComponentId="{E8F139BF-B38B-4DA8-B641-189EE82570E6}" Directory_="paragon_Dir" Attributes="0" KeyPath="Microsoft.Windows.Shell.dll"/>
+    <ROW Component="NewValue" ComponentId="{2E97674C-A78A-4DA7-9EAD-67B9A20C3DE2}" Directory_="APPDIR" Attributes="4" KeyPath="NewValue"/>
     <ROW Component="Newtonsoft.Json.dll" ComponentId="{8CBC2280-7FC2-4EC0-B87C-FD99017391CE}" Directory_="paragon_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
     <ROW Component="Paragon.AppPackager.exe" ComponentId="{329A9EAA-CC9F-4AE7-897A-61D9C5D7CECD}" Directory_="paragon_Dir" Attributes="0" KeyPath="Paragon.AppPackager.exe"/>
     <ROW Component="Paragon.Plugins.LocalStorage.dll" ComponentId="{14119403-197D-4548-BAC4-6270F60B5C59}" Directory_="paragon_Dir" Attributes="0" KeyPath="Paragon.Plugins.LocalStorage.dll"/>
@@ -65,8 +66,11 @@
     <ROW Component="Symphony.pgx" ComponentId="{61654034-174F-4732-9DFB-D17297EF90CE}" Directory_="apps_Dir" Attributes="0" KeyPath="Symphony.pgx" Type="0"/>
     <ROW Component="System.Threading.dll" ComponentId="{D262E3DA-4803-4E9B-970E-BBD343B79BF2}" Directory_="paragon_Dir" Attributes="0" KeyPath="System.Threading.dll"/>
     <ROW Component="System.Windows.Interactivity.dll" ComponentId="{E7DB0713-5832-4913-AB0F-F3FAF6F52DE8}" Directory_="paragon_Dir" Attributes="0" KeyPath="System.Windows.Interactivity.dll"/>
+    <ROW Component="URLProtocol" ComponentId="{F9C3DC0F-6FDF-4A34-9CC3-9F9E720BC775}" Directory_="APPDIR" Attributes="4" KeyPath="URLProtocol"/>
     <ROW Component="WebSocket4Net.dll" ComponentId="{1F742699-1FC3-4E69-9F69-BD1B0076185D}" Directory_="paragon_Dir" Attributes="0" KeyPath="WebSocket4Net.dll"/>
     <ROW Component="Xilium.CefGlue.dll" ComponentId="{7AF6ECFF-DB30-4477-A911-D0AC5A364353}" Directory_="paragon_Dir" Attributes="0" KeyPath="Xilium.CefGlue.dll"/>
+    <ROW Component="_" ComponentId="{34D9E480-D9D2-4770-9764-46EB93A3D0CC}" Directory_="APPDIR" Attributes="4" KeyPath="_"/>
+    <ROW Component="__1" ComponentId="{492B244B-5811-496F-BF22-C2F5539A03D4}" Directory_="APPDIR" Attributes="4" KeyPath="__1"/>
     <ROW Component="am.pak" ComponentId="{AE698465-C8A4-402D-967A-E3D16A8A8D1F}" Directory_="locales_Dir" Attributes="0" KeyPath="am.pak" Type="0"/>
     <ROW Component="cef.pak" ComponentId="{FB98B6E8-8CF7-485B-A6EA-2E94C66059B7}" Directory_="paragon_Dir" Attributes="0" KeyPath="cef.pak" Type="0"/>
     <ROW Component="d3dcompiler_43.dll" ComponentId="{B64ED7A6-244E-4A1E-A9A4-80CC414DBAD7}" Directory_="paragon_Dir" Attributes="0" KeyPath="d3dcompiler_43.dll"/>
@@ -78,7 +82,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="D564007E3BBE4F85950A09B470A7CA65" Title="Visual C++ Redistributable for Visual Studio 2013 x86" Description="Visual C++ Redistributable for Visual Studio 2013 x86" Display="3" Level="1" Attributes="0" Components="AI_CustomARPName"/>
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_CustomARPName Microsoft.Windows.Shell.dll Newtonsoft.Json.dll Paragon.AppPackager.exe Paragon.Plugins.LocalStorage.dll Paragon.Plugins.MessageBus.dll Paragon.Plugins.Notifications.dll Paragon.Plugins.ScreenCapture.dll Paragon.Plugins.dll Paragon.Renderer.exe Paragon.Runtime.dll ProductInformation Symphony Symphony.pgx System.Threading.dll System.Windows.Interactivity.dll WebSocket4Net.dll Xilium.CefGlue.dll am.pak cef.pak d3dcompiler_43.dll d3dcompiler_47.dll libEGL.dll libGLESv2.dll libcef.dll paragon.exe"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_CustomARPName Microsoft.Windows.Shell.dll NewValue Newtonsoft.Json.dll Paragon.AppPackager.exe Paragon.Plugins.LocalStorage.dll Paragon.Plugins.MessageBus.dll Paragon.Plugins.Notifications.dll Paragon.Plugins.ScreenCapture.dll Paragon.Plugins.dll Paragon.Renderer.exe Paragon.Runtime.dll ProductInformation Symphony Symphony.pgx System.Threading.dll System.Windows.Interactivity.dll URLProtocol WebSocket4Net.dll Xilium.CefGlue.dll _ __1 am.pak cef.pak d3dcompiler_43.dll d3dcompiler_47.dll libEGL.dll libGLESv2.dll libcef.dll paragon.exe"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
@@ -377,16 +381,20 @@
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /I [ProductCode]" Component_="AI_CustomARPName"/>
+    <ROW Registry="NewValue" Root="0" Key="symphony\DefaultIcon" Value="&quot;[paragon_Dir]paragon.exe&quot;,0" Component_="NewValue"/>
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
+    <ROW Registry="URLProtocol" Root="0" Key="symphony" Name="URL Protocol" Component_="URLProtocol"/>
     <ROW Registry="URLUpdateInfo" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLUpdateInfo" Value="[ARPURLUPDATEINFO]" Component_="AI_CustomARPName"/>
     <ROW Registry="UninstallPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallPath" Value="[AI_UNINSTALLER] /x [ProductCode]" Component_="AI_CustomARPName"/>
     <ROW Registry="UninstallString" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallString" Value="[AI_UNINSTALLER] /x [ProductCode]" Component_="AI_CustomARPName"/>
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
     <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#1" Component_="AI_CustomARPName"/>
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#0" Component_="AI_CustomARPName"/>
+    <ROW Registry="_" Root="0" Key="symphony\shell\open\command" Value="&quot;[paragon_Dir]paragon.exe&quot; /start-app=&quot;[#Symphony.pgx]&quot; /url=&quot;%1&quot;" Component_="_"/>
+    <ROW Registry="__1" Root="0" Key="symphony" Value="URL:Symphony Protocol" Component_="__1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="MinuetShortcut" Directory_="DesktopFolder" Name="SYMPHO~1|Symphony Shortcut" Component_="paragon.exe" Target="[#paragon.exe]" Arguments="/start-app=&quot;[#Symphony.pgx]&quot;" Description="Shortcut to Symphony Application" Hotkey="0" Icon_="symphonylogo.exe" IconIndex="0" ShowCmd="1" WkDir="paragon_Dir"/>

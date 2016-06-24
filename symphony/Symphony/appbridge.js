@@ -55,6 +55,12 @@ var appbridge = new function () {
         });
     };
 
+    self.RegisterProtocolHandlerCallback = function (protocolHandlerCallback) {
+        symphony.protocolHandler.onInvoked.addListener(function (uri) {
+            execCallback(protocolHandlerCallback, JSON.stringify({ uri: uri }));
+        });
+    };
+
     self.OpenScreenSnippetTool = function () {
         console.log("paragon.snippets.capture");
 
