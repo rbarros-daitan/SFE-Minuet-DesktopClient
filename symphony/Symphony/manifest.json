@@ -5,6 +5,7 @@
     "id" : "client.platforms.symphony",
 	"defaultFrameType": "windowsDefault",
     "singleInstance": true,
+    "enableMediaStream" :  true,
     "icons": {
 		"128": "symphony_logo.ico"
 	},
