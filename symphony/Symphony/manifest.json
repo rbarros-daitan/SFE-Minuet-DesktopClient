@@ -46,7 +46,7 @@
             "name": "Symphony.Crypto.CryptoPlugin",
             "runInRenderer": true,
             "assembly": "Symphony.Crypto.dll",
-            "UnmanagedDLLs": [ "msvcr120.dll", "msvcp120.dll", "zlib.dll", "libeay32.dll", "ssleay32.dll", "SFE-CryptoLib-Project.dll" ]
+            "UnmanagedDLLs": [ "msvcr120.dll", "msvcp120.dll", "libeay32.dll", "ssleay32.dll", "SFE-CryptoLib-Project.dll" ]
         },
         {
             "name": "Symphony.Plugins.DownloadPlugin",
