@@ -106,14 +106,16 @@ var appbridge = new function () {
                     args: opts.callbackArg
                 };
             }
+        });
+    };
 
-            // Get the main app window.
-            getMainWindow(function (win) {
-                // Cause the taskbar icon for the window to flash.
-                // -1 --> flash forever
-                // timeout 1500 ms - time between flashes
-                win.drawAttention(true, -1, 1500);
-            });
+    self.FlashTaskbarIcon = function () {
+        // Get the main app window.
+        getMainWindow(function (win) {
+            // Cause the taskbar icon for the window to flash.
+            // -1 --> flash forever
+            // timeout 1500 ms - time between flashes
+            win.drawAttention(true, -1, 1500);
         });
     };
 
