@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("SymphonyParagonClient")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Symphony")]
 [assembly: AssemblyProduct("SymphonyParagonClient")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2014")]
+[assembly: AssemblyCopyright("Symphony")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
