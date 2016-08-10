@@ -31,7 +31,11 @@ namespace Symphony.Plugins
                 MediaStreamPicker.MediaStreamPickerViewModel vm = new MediaStreamPicker.MediaStreamPickerViewModel(window);
                 window.DataContext = vm;
 
-                EventHandler requestCloseHandler = (sender, args) => window.Close();
+                EventHandler requestCloseHandler = (sender, args) =>
+                {
+                    callback("permission-denied", null);
+                    window.Close();
+                };
                 vm.RequestCancel += requestCloseHandler;
 
                 EventHandler<MediaStreamPicker.RequestShareEventArgs> requestShareHandler = (sender, args) =>
