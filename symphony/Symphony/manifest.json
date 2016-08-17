@@ -49,10 +49,6 @@
             "UnmanagedDLLs": [ "msvcr120.dll", "msvcp120.dll", "libeay32.dll", "ssleay32.dll", "SFE-CryptoLib-Project.dll" ]
         },
         {
-            "name": "Symphony.Plugins.DownloadPlugin",
-            "assembly": "Symphony.dll"
-        },
-        {
             "name": "Symphony.Plugins.ExternalPlugin",
             "assembly": "Symphony.dll"
         },
