@@ -68,7 +68,6 @@
     <Compile Include="Plugins\CachePlugin.cs" />
     <Compile Include="Plugins\Hotkeys\Converters\KeysValueConverter.cs" />
     <Compile Include="Plugins\Hotkeys\Converters\ModifierKeysValueConverter.cs" />
-    <Compile Include="Plugins\DownloadPlugin.cs" />
     <Compile Include="Plugins\Hotkeys\HotKeyConfigurationViewModel.cs" />
     <Compile Include="Plugins\Hotkeys\HotKeyConfigurationWindow.xaml.cs" />
     <Compile Include="Plugins\ActivityPlugin.cs" />
@@ -97,7 +96,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Behaviors\DownloadBehavior.cs" />
     <Compile Include="Win32\Win32Api.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -200,12 +198,12 @@
   <Target Name="AfterBuild">
     <Exec Command="$(SolutionDir)vendor\SFE-Minuet-DesktopClient\bin\paragon\Paragon.AppPackager --i:$(TargetDir) --o:$(SolutionDir)bin\out\$(AssemblyName).pgx" />
   </Target>
-  <Target Name="GargabeClean"  AfterTargets="Clean">
+  <Target Name="GargabeClean" AfterTargets="Clean">
     <!-- Remove obj folder -->
     <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
     <!-- Remove bin folder -->
     <RemoveDir Directories="$(BaseOutputPath)" />
-	<!-- Remove output folder -->
-	<RemoveDir Directories="$(OutputPath)" />
-  </Target>  
+    <!-- Remove output folder -->
+    <RemoveDir Directories="$(OutputPath)" />
+  </Target>
 </Project>
