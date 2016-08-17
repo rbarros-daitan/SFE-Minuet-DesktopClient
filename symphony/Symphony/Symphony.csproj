@@ -193,7 +193,19 @@
   <PropertyGroup>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <Target Name="AfterBuild">
     <Exec Command="$(SolutionDir)vendor\SFE-Minuet-DesktopClient\bin\paragon\Paragon.AppPackager --i:$(TargetDir) --o:$(SolutionDir)bin\out\$(AssemblyName).pgx" />
   </Target>
+  <Target Name="GargabeClean"  AfterTargets="Clean">
+    <!-- Remove obj folder -->
+    <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
+    <!-- Remove bin folder -->
+    <RemoveDir Directories="$(BaseOutputPath)" />
+	<!-- Remove output folder -->
+	<RemoveDir Directories="$(OutputPath)" />
+  </Target>  
 </Project>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Symphony.Win32;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -10,14 +12,18 @@ namespace Symphony.Plugins.MediaStreamPicker
 {
     public class EnumWindowResult
     {
-        public EnumWindowResult(HWND _hWnd, String _title, BitmapSource _image)
+        public EnumWindowResult(HWND _hWnd, String _title, BitmapSource _image, StringBuilder _filename)
         {
             hWnd = _hWnd;
             title = _title;
             image = _image;
+            filename = _filename;
         }
         public HWND hWnd { get; private set; }
         public string title { get; private set; }
+        
+        //Add filename
+        public StringBuilder filename { get; private set; }
         public BitmapSource image { get; private set; }
     }
 
@@ -99,14 +105,24 @@ namespace Symphony.Plugins.MediaStreamPicker
 
                 // freeze needed since we are creating on a separate thread
                 img.Freeze();
+                
+                //Getting filename.
+                uint processId = 0;
+                const int nChars = 1024;
+                StringBuilder filename = new StringBuilder(nChars);
+                NativeMethods.GetWindowThreadProcessId(hWnd, out processId);
+                IntPtr hProcess = NativeMethods.OpenProcess(1040, 0, processId);
+                NativeMethods.GetModuleFileNameEx(hProcess, IntPtr.Zero, filename, nChars);
+                NativeMethods.CloseHandle(hProcess);
 
-                windows.Add(new EnumWindowResult(hWnd, title, img));
+                windows.Add(new EnumWindowResult(hWnd, title, img, filename));
 
                 return true;
             }, 0);
 
             return windows;
         }
+
 
         static bool isAllowedWindow(HWND hWnd)
         {

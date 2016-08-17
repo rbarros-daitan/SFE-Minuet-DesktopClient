@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
-using Paragon.Plugins;
+﻿using Paragon.Plugins;
 using System.Windows;
 using System;
 
@@ -31,16 +29,23 @@ namespace Symphony.Plugins
                 MediaStreamPicker.MediaStreamPickerViewModel vm = new MediaStreamPicker.MediaStreamPickerViewModel(window);
                 window.DataContext = vm;
 
-                EventHandler requestCloseHandler = (sender, args) => window.Close();
+                EventHandler requestCloseHandler = (sender, args) =>
+                {
+                    callback("permission-denied", null);
+                    window.Close();
+                };
                 vm.RequestCancel += requestCloseHandler;
 
                 EventHandler<MediaStreamPicker.RequestShareEventArgs> requestShareHandler = (sender, args) =>
                 {
                     string stream = args.mediaStream;
+                    string fileName = args.fileName;
+                    string windowTitle = args.windowTitle;
+
                     if (String.IsNullOrEmpty(stream))
-                        callback("media stream selected is null/empty", stream);
+                        callback("media stream selected is null/empty", stream, fileName, windowTitle);
                     else
-                        callback(null, stream);
+                        callback(null, stream, fileName, windowTitle);
 
                     window.Close();
                 };

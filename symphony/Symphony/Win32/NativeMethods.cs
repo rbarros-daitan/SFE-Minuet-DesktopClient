@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Symphony.Win32
 {
@@ -51,5 +52,19 @@ namespace Symphony.Win32
 
         [DllImport("user32.dll")]
         public static extern int ShowWindow(IntPtr hWnd, UInt32 cmdShow);
+
+        [DllImport("user32.dll")]
+        public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+        
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr OpenProcess(UInt32 dwDesiredAccess, Int32 bInheritHandle, UInt32 dwProcessId);
+        
+        [DllImport("psapi.dll")]
+        public static extern uint GetModuleFileNameEx(IntPtr hProcess, IntPtr hModule, [Out] StringBuilder lpBaseName, [In] [MarshalAs(UnmanagedType.U4)] int nSize);
+        
+        [DllImport("kernel32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)] 
+        public static extern bool CloseHandle(IntPtr hObject);
+        
     }
 }

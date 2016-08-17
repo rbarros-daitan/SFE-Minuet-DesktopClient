@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
@@ -13,22 +12,29 @@ namespace Symphony.Plugins.MediaStreamPicker
 {
     public class RequestShareEventArgs: EventArgs
     {
-        public RequestShareEventArgs(string mediaStream)
+        public RequestShareEventArgs(string mediaStream, string fileName, string windowTitle)
         {
             this.mediaStream = mediaStream;
+            this.fileName = fileName;
+            this.windowTitle = windowTitle;
         }
 
         public string mediaStream { get; private set; }
+        public string fileName { get; private set; }
+        public string windowTitle { get; private set; }
     };
 
     public class Img
     {
-        public Img(string value, BitmapSource img)
+        public Img(string value, BitmapSource img, string fileName)
         {
             Str = value;
             ImageSource = img;
+            this.fileName = fileName;
         }
         public string Str { get; set; }
+        public string fileName { get; private set; }
+
         public BitmapSource ImageSource { get; set; }
     }
 
@@ -151,12 +157,12 @@ namespace Symphony.Plugins.MediaStreamPicker
             // see discussion here: https://bitbucket.org/chromiumembedded/cef/issues/1065/add-support-for-webrtc-based-screen
             foreach (EnumScreenResult screen in screens)
             {
-                addToStreams(screen.title, screen.image);
+                addToStreams(screen.title, screen.image, "fullscreen");
                 mediaStreams.Add("screen:" + screen.id + ":0");
             }
             foreach (EnumWindowResult window in windows)
             {
-                addToStreams(window.title, window.image);
+                addToStreams(window.title, window.image, window.filename.ToString());
                 mediaStreams.Add("window:" + window.hWnd.ToString() + ":0");
             }
 
@@ -164,18 +170,18 @@ namespace Symphony.Plugins.MediaStreamPicker
             selectedIndex = -1;
         }
 
-        void addToStreams(string title, BitmapSource image)
+        void addToStreams(string title, BitmapSource image, string fileName)
         {
-            Img item = new Img(title, image);
+            Img item = new Img(title, image, fileName);
             streams.Add(item);
         }
 
-        string getSelectedMediaStream()
+        RequestShareEventArgs getSelectedMediaStream()
         {
             if (selectedIndex == -1 || selectedIndex < 0 || selectedIndex >= mediaStreams.Count)
                 return null;
-
-            return mediaStreams[selectedIndex];
+            RequestShareEventArgs args = new RequestShareEventArgs(mediaStreams[selectedIndex], streams[selectedIndex].fileName, streams[selectedIndex].Str);
+            return args;
         }
 
         public ObservableCollection<Img> Streams
@@ -219,9 +225,9 @@ namespace Symphony.Plugins.MediaStreamPicker
 
         protected virtual void OnShare()
         {
-            string selectedMediaStream = getSelectedMediaStream();
+            RequestShareEventArgs selectedMedia = getSelectedMediaStream();
             var onRequestShare = this.RequestShare;
-            if (onRequestShare != null) onRequestShare(this, new RequestShareEventArgs(selectedMediaStream));
+            if (onRequestShare != null) onRequestShare(this, selectedMedia);
         }
 
         protected virtual void OnCancel()
