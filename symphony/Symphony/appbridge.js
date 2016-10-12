@@ -50,7 +50,7 @@ var appbridge = new function () {
     };
 
     self.RegisterActivityCallback = function (activityCallbackName) {
-        symphony.activityDetector.onActivity.addListener(function () {
+        symphony.activityDetector.onActivity.addListener(function() {
             execCallback(activityCallbackName, null);
         });
     };
@@ -60,6 +60,18 @@ var appbridge = new function () {
             execCallback(protocolHandlerCallback, JSON.stringify({ uri: uri }));
         });
     };
+
+    self.RegisterWindowBoundsChangeCallback = function (boundsChangeCallback) {
+        symphony.app.window.onWindowsBoundChanged.addListener(function (windowName, x, y, w, h) {
+            execCallback(boundsChangeCallback, JSON.stringify({
+                windowName: windowName,
+                x: x,
+                y: y,
+                width: w,
+                height: h
+            }));
+        });
+    }
 
     self.OpenScreenSnippetTool = function () {
         console.log("paragon.snippets.capture");

@@ -55,6 +55,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviors\AppWinBoundsChangeBehavior.cs" />
     <Compile Include="Behaviors\CloseAllWindowBehavior.cs" />
     <Compile Include="Configuration\Model\HotKey.cs" />
     <Compile Include="Configuration\Model\Point.cs" />
