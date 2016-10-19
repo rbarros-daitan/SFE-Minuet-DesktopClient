@@ -73,6 +73,10 @@ var appbridge = new function () {
         });
     }
 
+    self.raiseBoundsChangeEvent = function (windowName) {
+        symphony.app.window.raiseBoundsChangeEvent(windowName);
+    }
+
     self.OpenScreenSnippetTool = function () {
         console.log("paragon.snippets.capture");
 
