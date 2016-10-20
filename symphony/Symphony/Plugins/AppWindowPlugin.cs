@@ -10,6 +10,9 @@ namespace Symphony.Plugins
     [JavaScriptPlugin(Name = "symphony.app.window", IsBrowserSide = true)]
     public class AppWindowPlugin : IParagonPlugin
     {
+        [JavaScriptPluginMember(Name = "onWindowsBoundChanged")]
+        public event JavaScriptPluginCallback onWindowsBoundChanged;
+
         private IApplication application;
         private CloseAllWindowBehavior closeAllWindowBehavior;
 
@@ -26,12 +29,36 @@ namespace Symphony.Plugins
                 {
                     this.closeAllWindowBehavior.AttachTo(application, applicationWindow);
                 });
+
+            var appWinBoundsChangeBehavior = new AppWinBoundsChangeBehavior();
+            appWinBoundsChangeBehavior.AttachTo(application);
+            appWinBoundsChangeBehavior.Subscribe(
+                (appWindow, point, size) =>
+                {
+                    string windowName = appWindow.GetId();
+                    int x = (int)point.X;
+                    int y = (int)point.Y;
+                    int w = (int)size.Width;
+                    int h = (int)size.Height;
+                    this.onWindowsBoundChanged(windowName, x, y, w, h);
+                });
         }
 
         public void Shutdown()
         {
             
         }
+
+        [JavaScriptPluginMember]
+        public void raiseBoundsChangeEvent(string windowName)
+        {
+            IApplicationWindow applicationWindow;
+            var window = this.GetWindowByName(windowName, out applicationWindow);
+
+            if (applicationWindow != null)
+                applicationWindow.RaiseBoundsChangeEvent();
+        }
+
 
         [JavaScriptPluginMember]
         public bool IsWindowActive(string name)
