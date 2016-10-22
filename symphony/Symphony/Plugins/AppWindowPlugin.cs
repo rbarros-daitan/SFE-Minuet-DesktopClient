@@ -56,9 +56,13 @@ namespace Symphony.Plugins
             var window = this.GetWindowByName(windowName, out applicationWindow);
 
             if (applicationWindow != null)
-                applicationWindow.RaiseBoundsChangeEvent();
+            {
+                window.Dispatcher.Invoke(new Action(() =>
+                {
+                    applicationWindow.RaiseBoundsChangeEvent();
+                }));
+            }
         }
-
 
         [JavaScriptPluginMember]
         public bool IsWindowActive(string name)
