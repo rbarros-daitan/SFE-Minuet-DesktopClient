@@ -385,7 +385,7 @@
     <ROW Registry="NewValue" Root="0" Key="symphony\DefaultIcon" Value="&quot;[paragon_Dir]paragon.exe&quot;,0" Component_="NewValue"/>
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
-    <ROW Registry="PodUrl" Root="0" Key="symphony" Name="PodUrl" Value="https://my.symphony.com" Component_="PodUrl"/>
+    <ROW Registry="PodUrl" Root="0" Key="symphony" Name="PodUrl" Value="" Component_="PodUrl"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
     <ROW Registry="URLProtocol" Root="0" Key="symphony" Name="URL Protocol" Component_="URLProtocol"/>
