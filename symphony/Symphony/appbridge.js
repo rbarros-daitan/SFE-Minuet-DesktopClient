@@ -131,7 +131,7 @@ var appbridge = new function () {
             // Cause the taskbar icon for the window to flash.
             // -1 --> flash forever
             // timeout 1500 ms - time between flashes
-            win.drawAttention(true, -1, 1500);
+            win.drawAttention(true, 1, 1500);
         });
     };
 
