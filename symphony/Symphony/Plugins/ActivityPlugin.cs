@@ -30,9 +30,7 @@ namespace Symphony.Plugins
         static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
 
         System.Threading.Timer timer = null;
-        double numOfSecondsWaited = 60;
-        double checkIntervalInSecs = 1;
-        bool activityOccurred = false;
+        double checkIntervalInSecs = 15;
 
         public void Initialize(IApplication application)
         {
@@ -50,20 +48,6 @@ namespace Symphony.Plugins
         {
             if (hasActivityOccurred())
             {
-                activityOccurred = true;
-            }
-
-            if (activityOccurred)
-            {
-                numOfSecondsWaited += checkIntervalInSecs;
-
-                // raise event at most once per minute to avoid flooding appBridge
-                if (numOfSecondsWaited < 60)
-                    return;
-
-                numOfSecondsWaited = 0;
-                activityOccurred = false;
-
                 var evnt = onActivity;
                 if (evnt != null)
                     evnt();
