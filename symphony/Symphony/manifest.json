@@ -16,7 +16,9 @@
             "scripts": ["background.js"]
         }
     },
-	"externalUrlWhitelist" : ["*"],
+    "externalUrlWhitelist": [ "*" ],
+
+    "customProtocolWhitelist" : ["fdsup"],
 
     "applicationPlugins": [
         {
