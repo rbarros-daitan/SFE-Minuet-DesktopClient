@@ -440,12 +440,7 @@ namespace Symphony.Crypto
                     throw new Exception("In " + name + ", Failed to parse RSA PEM formatted key: " + PEMKey);
                 }
 
-                byte[] Input;
-                if (name == "RSADecrypt")
-                    Input = System.Convert.FromBase64String(InputStr);
-                else
-                    Input = System.Text.Encoding.UTF8.GetBytes(InputStr);
-
+                byte[] Input = System.Convert.FromBase64String(InputStr);
 
                 int OutLen = System.Convert.ToInt32(UnsafeNativeMethods.CL_getRSAKeySize(RSAKey));
                 IntPtr InputPtr = Marshal.AllocHGlobal(Input.Length + OutLen);
