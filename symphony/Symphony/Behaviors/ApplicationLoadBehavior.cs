@@ -23,7 +23,6 @@ namespace Symphony.Behaviors
         {
             if (isMainWindow)
             {
-                this.application.WindowManager.CreatedWindow -= this.OnWindowCreated;
                 if (this.onLoad != null) this.onLoad(applicationWindow);
             }
         }
