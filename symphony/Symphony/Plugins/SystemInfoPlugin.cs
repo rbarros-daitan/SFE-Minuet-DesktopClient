@@ -11,9 +11,21 @@ using Symphony.Win32;
 namespace Symphony.Plugins
 {
     [JavaScriptPlugin(Name = "symphony.systeminfo", IsBrowserSide = true)]
-    public class SystemInfoPlugin
+    public class SystemInfoPlugin: IParagonPlugin
     {
         private string windowDpi;
+
+        public IApplication Application { get; private set; }
+
+        public void Initialize(IApplication application)
+        {
+            Application = application;
+        }
+
+        public void Shutdown()
+        {
+            Application = null;
+        }
 
         [JavaScriptPluginMember]
         public JObject GetSystemInfo()
@@ -33,6 +45,16 @@ namespace Symphony.Plugins
                 .GetExecutingAssembly()
                 .GetName()
                 .Version;
+
+            if (Application != null && Application.Metadata != null)
+            {
+                var package = Application.Metadata.GetApplicationPackage();
+
+                if (package != null && package.Manifest != null)
+                {
+                    json["appVersion"] = package.Manifest.Version;
+                }
+            }
 
             json["windowDpi"] = this.GetWindowDpi();
 
