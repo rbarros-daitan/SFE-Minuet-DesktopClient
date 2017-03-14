@@ -10,7 +10,7 @@
     <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName]"/>
     <ROW Property="AI_ThemeStyle" Value="default" MsiKey="AI_ThemeStyle"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
-    <ROW Property="ALLUSERS" Value="1" MultiBuildValue="DefaultBuild:"/>
+    <ROW Property="ALLUSERS" Value="1" MultiBuildValue="DefaultBuild:2"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPHELPLINK" Value="http://www.symphony.com"/>
     <ROW Property="ARPNOREPAIR" Value="1"/>
@@ -21,6 +21,7 @@
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="DialogBitmap" Value="dialog" MultiBuildValue="DefaultBuild:Tabloid.jpg" Type="1" MsiKey="DialogBitmap"/>
     <ROW Property="Manufacturer" Value="Symphony"/>
+    <ROW Property="PODURL" Value="https://my.symphony.com" Type="4"/>
     <ROW Property="ProductCode" Value="1033:{CECA3220-932C-4FC3-876C-CA37D3548239} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Symphony"/>
@@ -192,6 +193,8 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="InstallTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\InstallTypeDlg.aip"/>
     <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
     <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
     <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
@@ -233,6 +236,29 @@
     <ROW Dialog_="ExitDialog" Control="BottomLine" Type="Line" X="0" Y="234" Width="372" Height="0" Attributes="1" Order="1000" MsiKey="ExitDialog#BottomLine"/>
     <ROW Dialog_="FatalError" Control="Title" Type="Text" X="132" Y="10" Width="220" Height="36" Attributes="196611" Text="The [ProductName] [Wizard] ended prematurely" TextStyle="VerdanaBold13" Order="800" TextLocId="Control.Text.FatalError#Title" MsiKey="FatalError#Title"/>
     <ROW Dialog_="FilesInUse" Control="Logo" Type="Text" X="4" Y="228" Width="37" Height="12" Attributes="1" Text="Symphony" Order="600" TextLocId="Control.Text.FilesInUse#Logo" MsiKey="FilesInUse#Logo"/>
+    <ROW Dialog_="FolderDlg" Control="FolderDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
+    <ROW Dialog_="FolderDlg" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="600" TextLocId="-" MsiKey="FolderDlg#Cancel" Options="1"/>
+    <ROW Dialog_="FolderDlg" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="700" TextLocId="-" MsiKey="FolderDlg#Back" Options="1"/>
+    <ROW Dialog_="FolderDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="[BannerBitmap]" Help="|" Order="800" HelpLocId="Control.Help.FolderDlg#BannerBitmap" MsiKey="FolderDlg#BannerBitmap"/>
+    <ROW Dialog_="FolderDlg" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Select Installation Folder and POD URL" TextStyle="[DlgTitleFont]" Order="900" TextLocId="Control.Text.FolderDlg#Title" MsiKey="FolderDlg#Title"/>
+    <ROW Dialog_="FolderDlg" Control="Text" Type="Text" X="25" Y="70" Width="320" Height="40" Attributes="3" Text="To install in this folder, click &quot;[Text_Next]&quot;. To install to a different folder, enter it below or click &quot;Browse&quot;." Order="1000" TextLocId="Control.Text.FolderDlg#Text" MsiKey="FolderDlg#Text"/>
+    <ROW Dialog_="FolderDlg" Control="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Attributes="196611" Text="This is the folder where [ProductName] will be installed." Order="1100" TextLocId="Control.Text.FolderDlg#Description" MsiKey="FolderDlg#Description"/>
+    <ROW Dialog_="FolderDlg" Control="BannerLine" Type="Line" X="0" Y="44" Width="372" Height="0" Attributes="1" Order="1200" MsiKey="FolderDlg#BannerLine"/>
+    <ROW Dialog_="FolderDlg" Control="Edit_1" Type="Edit" X="20" Y="191" Width="251" Height="18" Attributes="3" Property="PODURL" Text="{260}" Order="1300"/>
+    <ROW Dialog_="FolderDlg" Control="Text_5" Type="Text" X="20" Y="179" Width="220" Height="12" Attributes="3" Text="Symphony POD URL:" Help="|" Order="1400" TextLocId="Control.Text.FolderDlg#FolderLabel" HelpLocId="Control.Help.FolderDlg#FolderLabel"/>
+    <ROW Dialog_="FolderDlg" Control="Logo" Type="Text" X="4" Y="228" Width="42" Height="12" Attributes="1" Text="Symphony" Order="1500" TextLocId="Control.Text.ProgressDlg#Logo"/>
+    <ROW Dialog_="InstallTypeDlg" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="234" Attributes="1048577" Text="[DialogBitmap]" Order="100"/>
+    <ROW Dialog_="InstallTypeDlg" Control="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Next]" Order="200" TextLocId="-" MsiKey="InstallTypeDlg#Next" Options="1"/>
+    <ROW Dialog_="InstallTypeDlg" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="300" TextLocId="-" MsiKey="InstallTypeDlg#Cancel" Options="1"/>
+    <ROW Dialog_="InstallTypeDlg" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="400" TextLocId="-" MsiKey="InstallTypeDlg#Back" Options="1"/>
+    <ROW Dialog_="InstallTypeDlg" Control="InstallTypeRadioButtonGroup" Type="RadioButtonGroup" X="140" Y="146" Width="190" Height="44" Attributes="3" Property="AI_InstallPerUser" Order="500" MsiKey="InstallTypeDlg#InstallTypeRadioButtonGroup"/>
+    <ROW Dialog_="InstallTypeDlg" Control="Text_1" Type="Text" X="137" Y="14" Width="220" Height="36" Attributes="196611" Text="Thanks for downloading [ProductName]" TextStyle="VerdanaBold13" Order="600" TextLocId="Control.Text.WelcomeDlg#Title"/>
+    <ROW Dialog_="InstallTypeDlg" Control="Text_2" Type="Text" X="137" Y="53" Width="220" Height="40" Attributes="196611" Text="With [ProductName] on your desktop" Order="700" TextLocId="Control.Text.WelcomeDlg#Description"/>
+    <ROW Dialog_="InstallTypeDlg" Control="Text_3" Type="Text" X="140" Y="64" Width="203" Height="12" Attributes="196611" Text="- Don&apos;t miss any notifications" Order="800" TextLocId="Control.Text.WelcomeDlg#Description"/>
+    <ROW Dialog_="InstallTypeDlg" Control="Text_4" Type="Text" X="140" Y="76" Width="198" Height="12" Attributes="196611" Text="- Easily capture and share screenshots" Order="900" TextLocId="Control.Text.WelcomeDlg#Description"/>
+    <ROW Dialog_="InstallTypeDlg" Control="Text_5" Type="Text" X="140" Y="88" Width="204" Height="19" Attributes="196611" Text="- Organize how your alerts are positioned" Order="1000" TextLocId="Control.Text.WelcomeDlg#Description"/>
+    <ROW Dialog_="InstallTypeDlg" Control="Text_6" Type="Text" X="140" Y="129" Width="136" Height="11" Attributes="65539" Property="TEXT_6_PROP" Text="Select the installion type:" Order="1100"/>
+    <ROW Dialog_="InstallTypeDlg" Control="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" Attributes="1" Order="1200"/>
     <ROW Dialog_="MaintenanceTypeDlg" Control="ChangeLabel" Type="Text" X="105" Y="65" Width="100" Height="10" Attributes="2" Text="&amp;Modify" TextStyle="[DlgTitleFont]" Order="100" TextLocId="Control.Text.MaintenanceTypeDlg#ChangeLabel" MsiKey="MaintenanceTypeDlg#ChangeLabel"/>
     <ROW Dialog_="MaintenanceTypeDlg" Control="ChangeButton" Type="PushButton" X="50" Y="65" Width="38" Height="38" Attributes="5767170" Text="[CustomSetupIcon]" Help="Modify Installation|" Order="200" HelpLocId="Control.Help.MaintenanceTypeDlg#ChangeButton" MsiKey="MaintenanceTypeDlg#ChangeButton"/>
     <ROW Dialog_="MaintenanceTypeDlg" Control="RepairLabel" Type="Text" X="105" Y="92" Width="100" Height="10" Attributes="3" Text="Re&amp;pair" TextStyle="[DlgTitleFont]" Order="300" TextLocId="Control.Text.MaintenanceTypeDlg#RepairLabel" MsiKey="MaintenanceTypeDlg#RepairLabel"/>
@@ -252,6 +278,15 @@
     <ROW Dialog_="OutOfRbDiskDlg" Control="Logo" Type="Text" X="4" Y="228" Width="38" Height="12" Attributes="1" Text="Symphony" Order="500" TextLocId="Control.Text.OutOfRbDiskDlg#Logo" MsiKey="OutOfRbDiskDlg#Logo"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="Title" Type="Text" X="132" Y="10" Width="220" Height="36" Attributes="196611" Text="Welcome to the [ProductName] Patch [Wizard]" TextStyle="VerdanaBold13" Order="500" TextLocId="Control.Text.PatchWelcomeDlg#Title" MsiKey="PatchWelcomeDlg#Title"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="Description" Type="Text" X="132" Y="49" Width="220" Height="40" Attributes="196611" Text="The [Wizard] will install the Patch for [ProductName] on your computer. Click &quot;[Text_Next]&quot; to continue or &quot;Cancel&quot; to exit the Patch [Wizard]." Order="600" TextLocId="Control.Text.PatchWelcomeDlg#Description" MsiKey="PatchWelcomeDlg#Description"/>
+    <ROW Dialog_="PodurlDlg" Control="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Next]" Order="100" TextLocId="-" Options="1"/>
+    <ROW Dialog_="PodurlDlg" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="200" TextLocId="-" Options="1"/>
+    <ROW Dialog_="PodurlDlg" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="300" TextLocId="-" Options="1"/>
+    <ROW Dialog_="PodurlDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="[BannerBitmap]" Order="400"/>
+    <ROW Dialog_="PodurlDlg" Control="BannerLine" Type="Line" X="0" Y="44" Width="372" Height="0" Attributes="1" Order="500"/>
+    <ROW Dialog_="PodurlDlg" Control="BottomLine" Type="Line" X="5" Y="234" Width="368" Height="0" Attributes="1" Order="600"/>
+    <ROW Dialog_="PodurlDlg" Control="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Attributes="196611" Text="Modify Pod Url to connect" Order="700"/>
+    <ROW Dialog_="PodurlDlg" Control="Logo" Type="Text" X="4" Y="228" Width="70" Height="12" Attributes="1" Text="Advanced Installer" Order="800"/>
+    <ROW Dialog_="PodurlDlg" Control="PodUrl" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Pod Url" TextStyle="[DlgTitleFont]" Order="900"/>
     <ROW Dialog_="PrepareDlg" Control="Title" Type="Text" X="132" Y="10" Width="220" Height="36" Attributes="196611" Text="Thanks for downloading [ProductName]" TextStyle="VerdanaBold13" Order="300" TextLocId="Control.Text.PrepareDlg#Title" MsiKey="PrepareDlg#Title"/>
     <ROW Dialog_="PrepareDlg" Control="Description" Type="Text" X="132" Y="49" Width="220" Height="20" Attributes="196611" Text="Please wait while the [Wizard] prepares to guide you through the installation." Order="500" TextLocId="Control.Text.PrepareDlg#Description" MsiKey="PrepareDlg#Description"/>
     <ROW Dialog_="ProgressDlg" Control="BottomLine" Type="Line" X="4" Y="234" Width="367" Height="2" Attributes="1" Order="300" MsiKey="ProgressDlg#BottomLine"/>
@@ -262,23 +297,17 @@
     <ROW Dialog_="VerifyReadyDlg" Control="Logo" Type="Text" X="5" Y="228" Width="39" Height="12" Attributes="1" Text="Symphony" Order="500" TextLocId="Control.Text.VerifyReadyDlg#Logo" MsiKey="VerifyReadyDlg#Logo"/>
     <ROW Dialog_="VerifyRemoveDlg" Control="Logo" Type="Text" X="4" Y="228" Width="40" Height="12" Attributes="1" Text="Symphony" Order="600" TextLocId="Control.Text.VerifyRemoveDlg#Logo" MsiKey="VerifyRemoveDlg#Logo"/>
     <ROW Dialog_="VerifyRepairDlg" Control="Logo" Type="Text" X="4" Y="228" Width="38" Height="12" Attributes="1" Text="Symphony" Order="500" TextLocId="Control.Text.VerifyRepairDlg#Logo" MsiKey="VerifyRepairDlg#Logo"/>
-    <ROW Dialog_="WelcomeDlg" Control="WelcomeDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
     <ROW Dialog_="WelcomeDlg" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="0" Text="[ButtonText_Back]" Order="400" TextLocId="-" MsiKey="WelcomeDlg#Back" Options="1"/>
-    <ROW Dialog_="WelcomeDlg" Control="Title" Type="Text" X="132" Y="10" Width="220" Height="36" Attributes="196611" Text="Thanks for downloading [ProductName]" TextStyle="VerdanaBold13" Order="500" TextLocId="Control.Text.WelcomeDlg#Title" MsiKey="WelcomeDlg#Title"/>
-    <ROW Dialog_="WelcomeDlg" Control="Description" Type="Text" X="132" Y="49" Width="220" Height="40" Attributes="196611" Text="With [ProductName] on your desktop" Order="600" TextLocId="Control.Text.WelcomeDlg#Description" MsiKey="WelcomeDlg#Description"/>
-    <ROW Dialog_="WelcomeDlg" Control="Text_1" Type="Text" X="135" Y="60" Width="203" Height="12" Attributes="196611" Text="- Don&apos;t miss any notifications" Order="800" TextLocId="Control.Text.WelcomeDlg#Description"/>
-    <ROW Dialog_="WelcomeDlg" Control="Text_2" Type="Text" X="135" Y="72" Width="198" Height="12" Attributes="196611" Text="- Easily capture and share screenshots" Order="900" TextLocId="Control.Text.WelcomeDlg#Description"/>
-    <ROW Dialog_="WelcomeDlg" Control="Text_3" Type="Text" X="135" Y="84" Width="204" Height="19" Attributes="196611" Text="- Organize how your alerts are positioned" Order="1000" TextLocId="Control.Text.WelcomeDlg#Description"/>
-    <ROW Dialog_="WelcomeDlg" Control="Text_4" Type="Text" X="132" Y="126" Width="235" Height="23" Attributes="196611" Text="To install to a different folder, enter it below or click &quot;Browse&quot;." Order="1100" TextLocId="Control.Text.WelcomeDlg#Description"/>
-    <ROW Dialog_="WelcomeDlg" Control="FolderEdit" Type="PathEdit" X="132" Y="142" Width="220" Height="15" Attributes="7" Property="APPDIR" Text="{260}" Order="1200"/>
-    <ROW Dialog_="WelcomeDlg" Control="Browse" Type="PushButton" X="132" Y="162" Width="62" Height="18" Attributes="3" Text="[ButtonText_Browse]" Order="1300"/>
-    <ATTRIBUTE name="DeletedRows" value="ExitDialog#ViewReadmeText"/>
+    <ROW Dialog_="WelcomeDlg" Control="BottomLine" Type="Line" X="0" Y="234" Width="372" Height="0" Attributes="1" Order="500" MsiKey="WelcomeDlg#BottomLine"/>
+    <ROW Dialog_="WelcomeDlg" Control="Text_4" Type="Text" X="132" Y="126" Width="235" Height="23" Attributes="196611" Text="To install to a different folder, enter it below or click &quot;Browse&quot;." Order="600" TextLocId="Control.Text.WelcomeDlg#Description"/>
+    <ROW Dialog_="WelcomeDlg" Control="FolderEdit" Type="PathEdit" X="132" Y="142" Width="220" Height="15" Attributes="7" Property="APPDIR" Text="{260}" Order="700"/>
+    <ROW Dialog_="WelcomeDlg" Control="Browse" Type="PushButton" X="132" Y="162" Width="62" Height="18" Attributes="3" Text="[ButtonText_Browse]" Order="800"/>
+    <ATTRIBUTE name="DeletedRows" value="ExitDialog#ViewReadmeText@InstallTypeDlg#BannerLine@WelcomeDlg#Description@InstallTypeDlg#BannerBitmap@WelcomeDlg#Title@InstallTypeDlg#InstallTypeText@InstallTypeDlg#Logo@InstallTypeDlg#Title@InstallTypeDlg#Description@InstallTypeDlg#BottomLine@FolderDlg#Logo"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlConditionComponent">
     <ATTRIBUTE name="DeletedRows" value="ExitDialog#ViewReadmeText#Hide#((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 1) AND (CTRLS &lt;&gt; 3))"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
-    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="3"/>
     <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
     <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
     <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
@@ -299,20 +328,27 @@
     <ROW Dialog_="WelcomeDlg" Control_="Browse" Event="[_BrowseProperty]" Argument="APPDIR" Condition="1" Ordering="0"/>
     <ROW Dialog_="WelcomeDlg" Control_="Browse" Event="SpawnDialog" Argument="BrowseDlg" Condition="1" Ordering="1"/>
     <ROW Dialog_="WelcomeDlg" Control_="Next" Event="SetTargetPath" Argument="APPDIR" Condition="1" Ordering="2"/>
-    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="4" Options="2"/>
-    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="EnableRollback" Argument="False" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST=&quot;D&quot;" Ordering="5" Options="2"/>
-    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_INSTALL AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="6" Options="2"/>
-    <ROW Dialog_="WelcomeDlg" Control_="WelcomeDlgDialogInitializer" Event="[AI_ButtonText_Next_Orig]" Argument="[ButtonText_Next]" Condition="AI_INSTALL" Ordering="0" Options="2"/>
-    <ROW Dialog_="WelcomeDlg" Control_="WelcomeDlgDialogInitializer" Event="[ButtonText_Next]" Argument="[[AI_CommitButton]]" Condition="AI_INSTALL" Ordering="1" Options="2"/>
-    <ROW Dialog_="WelcomeDlg" Control_="WelcomeDlgDialogInitializer" Event="[AI_Text_Next_Orig]" Argument="[Text_Next]" Condition="AI_INSTALL" Ordering="2" Options="2"/>
-    <ROW Dialog_="WelcomeDlg" Control_="WelcomeDlgDialogInitializer" Event="[Text_Next]" Argument="[Text_Install]" Condition="AI_INSTALL" Ordering="3" Options="2"/>
-    <ROW Dialog_="WelcomeDlg" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_INSTALL" Ordering="0" Options="2"/>
-    <ROW Dialog_="WelcomeDlg" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_INSTALL" Ordering="1" Options="2"/>
+    <ROW Dialog_="InstallTypeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="101"/>
+    <ROW Dialog_="InstallTypeDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="PodurlDlg" Control_="Cancel" Event="SpawnDialog" Argument="CancelDlg" Condition="1" Ordering="100"/>
+    <ROW Dialog_="PodurlDlg" Control_="Back" Event="NewDialog" Argument="InstallTypeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="InstallTypeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="202" Options="2"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="EnableRollback" Argument="False" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST=&quot;D&quot;" Ordering="203" Options="2"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_INSTALL AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="204" Options="2"/>
+    <ROW Dialog_="FolderDlg" Control_="FolderDlgDialogInitializer" Event="[AI_ButtonText_Next_Orig]" Argument="[ButtonText_Next]" Condition="AI_INSTALL" Ordering="0" Options="2"/>
+    <ROW Dialog_="FolderDlg" Control_="FolderDlgDialogInitializer" Event="[ButtonText_Next]" Argument="[[AI_CommitButton]]" Condition="AI_INSTALL" Ordering="1" Options="2"/>
+    <ROW Dialog_="FolderDlg" Control_="FolderDlgDialogInitializer" Event="[AI_Text_Next_Orig]" Argument="[Text_Next]" Condition="AI_INSTALL" Ordering="2" Options="2"/>
+    <ROW Dialog_="FolderDlg" Control_="FolderDlgDialogInitializer" Event="[Text_Next]" Argument="[Text_Install]" Condition="AI_INSTALL" Ordering="3" Options="2"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_INSTALL" Ordering="2" Options="2"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_INSTALL" Ordering="3" Options="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="Symphony_Dir" Component_="Symphony" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_AuthorSinglePackage" Type="1" Source="aicustact.dll" Target="AI_AuthorSinglePackage" WithoutSeq="true"/>
     <ROW Action="AI_DATA_SETTER" Type="51" Source="CustomActionData" Target="Paragon.Renderer.exe"/>
     <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="Paragon.Renderer.exe"/>
     <ROW Action="AI_DATA_SETTER_2" Type="51" Source="CustomActionData" Target="paragon.exe"/>
@@ -324,15 +360,20 @@
     <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#paragon.exe]"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SETMIXINSTLOCATION" Type="1" Source="aicustact.dll" Target="MixedAllUsersInstallLocation"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
     <ROW Action="KillParagon" Type="1" Source="aicustact.dll" Target="StopProcess" Options="1" AdditionalSeq="AI_DATA_SETTER_2"/>
     <ROW Action="KillParagon_1" Type="1" Source="aicustact.dll" Target="StopProcess" AdditionalSeq="AI_DATA_SETTER_3"/>
     <ROW Action="KillRenderer" Type="1" Source="aicustact.dll" Target="StopProcess" Options="1" AdditionalSeq="AI_DATA_SETTER"/>
     <ROW Action="KillRenderer_1" Type="1" Source="aicustact.dll" Target="StopProcess" AdditionalSeq="AI_DATA_SETTER_1"/>
-    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[AppDataFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="Paragon.AppPackager.exe" Type="3602" Source="Paragon.AppPackager.exe" Target="--u:[PODURL] &quot;--p:[#Symphony.pgx]&quot;"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[AI_UserProgramFiles][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDialogComponent">
+    <ROW Dialog="PodurlDlg" HCentering="50" VCentering="50" Width="370" Height="270" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="symphonylogo.exe" SourcePath="..\Symphony\Symphony\symphony_logo.ico" Index="0"/>
@@ -347,6 +388,8 @@
     <ROW Action="AI_DATA_SETTER_2" Sequence="51"/>
     <ROW Action="KillRenderer" Sequence="55"/>
     <ROW Action="AI_DATA_SETTER" Sequence="54"/>
+    <ROW Action="AI_SETMIXINSTLOCATION" Sequence="749"/>
+    <ROW Action="Paragon.AppPackager.exe" Condition="( NOT Installed ) AND ( PODURL &lt;&gt; &quot;&quot; )" Sequence="5969"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_ResolveKnownFolders" Sequence="56"/>
@@ -356,6 +399,8 @@
     <ROW Action="AI_DATA_SETTER_1" Sequence="53"/>
     <ROW Action="KillParagon_1" Sequence="52"/>
     <ROW Action="AI_DATA_SETTER_3" Sequence="51"/>
+    <ROW Action="AI_SETMIXINSTLOCATION" Sequence="749"/>
+    <ROW Action="InstallTypeDlg" Condition="AI_INSTALL" Sequence="1230" SeqType="3" MsiKey="WelcomeDlg"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="( Version9X OR ( NOT VersionNT64 ) OR ( VersionNT64 AND ((VersionNT64 &lt;&gt; 502) OR (((VersionNT64 = 502) AND (ServicePackLevel &gt;= 1)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 502) OR (((VersionNT64 = 502) AND (ServicePackLevel &lt;&gt; 1)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 502) OR (((VersionNT64 = 502) AND (ServicePackLevel &lt;&gt; 2)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 502) OR ((VersionNT64 = 502) AND ((MsiNTProductType = 1) OR (ServicePackLevel &gt;= 1)))) AND ((VersionNT64 &lt;&gt; 502) OR ((VersionNT64 = 502) AND ((MsiNTProductType = 1) OR (ServicePackLevel &lt;&gt; 1)))) AND ((VersionNT64 &lt;&gt; 502) OR ((VersionNT64 = 502) AND ((MsiNTProductType = 1) OR (ServicePackLevel &lt;&gt; 2)))) AND ((VersionNT64 &lt;&gt; 600) OR (((VersionNT64 = 600) AND (ServicePackLevel &gt;= 1)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 600) OR (((VersionNT64 = 600) AND (ServicePackLevel &lt;&gt; 1)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 600) OR (((VersionNT64 = 600) AND (ServicePackLevel &lt;&gt; 2)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 600) OR ((VersionNT64 = 600) AND (MsiNTProductType = 1))) AND ((VersionNT64 &lt;&gt; 601) OR ((VersionNT64 = 601) AND ((ServicePackLevel &gt;= 1) OR (MsiNTProductType = 1)))) AND ((VersionNT64 &lt;&gt; 601) OR (((VersionNT64 = 601) AND (ServicePackLevel &lt;&gt; 1)) OR (MsiNTProductType = 1))) AND ((VersionNT64 &lt;&gt; 602) OR ((VersionNT64 = 602) AND ((ServicePackLevel &gt;= 1) OR (MsiNTProductType = 1)))) AND ((VersionNT64 &lt;&gt; 603) OR ((VersionNT64 = 603) AND ((ServicePackLevel &gt;= 1) OR (MsiNTProductType = 1)))) ) )" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT64Display]" DescriptionLocId="AI.LaunchCondition.NoSpecificNT64" IsPredefined="true" Builds="DefaultBuild"/>
@@ -363,6 +408,10 @@
     <ROW Condition="(AI_DOTNET35_SEARCH = &quot;#1&quot;) OR (AI_DOTNET35_CLIENTPROFILE_SEARCH = &quot;#1&quot;) OR (AI_DOTNET40_CLIENTPROFILE_SEARCH = &quot;#1&quot;) OR (AI_DOTNET45_SEARCH &gt;= &quot;4.5&quot;) OR (AI_DOTNET451_SEARCH &gt;= &quot;#378675&quot;)" Description="[ProductName] cannot be installed on systems with .NET Framework version lower than [AI_MINDOTNETVERSION]" DescriptionLocId="AI.LaunchCondition.DotNET" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT40Display]" DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]" DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRadioButtonComponent">
+    <ROW Property="AI_InstallPerUser" Order="2" Value="0" X="16" Y="24" Width="174" Height="11" Text="Everybody (all users - admin required)" MsiKey="AI_InstallPerUser#2"/>
+    <ROW Property="AI_InstallPerUser" Order="1" Value="1" X="16" Y="8" Width="140" Height="11" Text="Only for me ([LogonUser])" TextLocId="RadioButton.Text.InstallTypeDlg#1" MsiKey="AI_InstallPerUser#1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
     <ROW Signature_="AI_DotNet35ClientProfileSearchSgn" Root="2" Key="SOFTWARE\Microsoft\NET Framework Setup\DotNetClient\v3.5" Name="Install" Type="2"/>
@@ -384,21 +433,21 @@
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /I [ProductCode]" Component_="AI_CustomARPName"/>
-    <ROW Registry="NewValue" Root="0" Key="symphony\DefaultIcon" Value="&quot;[paragon_Dir]paragon.exe&quot;,0" Component_="NewValue"/>
+    <ROW Registry="NewValue" Root="-1" Key="Software\[Manufacturer]\[ProductName]\DefaultIcon" Value="&quot;[paragon_Dir]paragon.exe&quot;,0" Component_="NewValue"/>
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
-    <ROW Registry="PodUrl" Root="0" Key="symphony" Name="PodUrl" Component_="PodUrl"/>
+    <ROW Registry="PodUrl" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="PodUrl" Component_="PodUrl"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
-    <ROW Registry="URLProtocol" Root="0" Key="symphony" Name="URL Protocol" Component_="URLProtocol"/>
+    <ROW Registry="URLProtocol" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="URL Protocol" Component_="URLProtocol"/>
     <ROW Registry="URLUpdateInfo" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLUpdateInfo" Value="[ARPURLUPDATEINFO]" Component_="AI_CustomARPName"/>
     <ROW Registry="UninstallPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallPath" Value="[AI_UNINSTALLER] /x [ProductCode]" Component_="AI_CustomARPName"/>
     <ROW Registry="UninstallString" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallString" Value="[AI_UNINSTALLER] /x [ProductCode]" Component_="AI_CustomARPName"/>
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
     <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#1" Component_="AI_CustomARPName"/>
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#0" Component_="AI_CustomARPName"/>
-    <ROW Registry="_" Root="0" Key="symphony\shell\open\command" Value="&quot;[paragon_Dir]paragon.exe&quot; /start-app=&quot;[#Symphony.pgx]&quot; /url=&quot;%1&quot;" Component_="_"/>
-    <ROW Registry="__1" Root="0" Key="symphony" Value="URL:Symphony Protocol" Component_="__1"/>
+    <ROW Registry="_" Root="-1" Key="Software\[Manufacturer]\[ProductName]\shell\open\command" Value="&quot;[paragon_Dir]paragon.exe&quot; /start-app=&quot;[#Symphony.pgx]&quot; /url=&quot;%1&quot;" Component_="_"/>
+    <ROW Registry="__1" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Value="URL:Symphony Protocol" Component_="__1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="MinuetShortcut" Directory_="DesktopFolder" Name="SYMPHO~1|Symphony Shortcut" Component_="paragon.exe" Target="[#paragon.exe]" Arguments="/start-app=&quot;[#Symphony.pgx]&quot;" Description="Shortcut to Symphony Application" Hotkey="0" Icon_="symphonylogo.exe" IconIndex="0" ShowCmd="1" WkDir="paragon_Dir"/>
