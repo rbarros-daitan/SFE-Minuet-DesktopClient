@@ -1,6 +1,9 @@
 ﻿using Paragon.Plugins;
 using System.Windows;
 using System;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Symphony.Plugins
 {
@@ -18,15 +21,29 @@ namespace Symphony.Plugins
         {
         }
 
+        private class Sources
+        {
+            public string[] sources { get; set; }
+        }
+
         [JavaScriptPluginMember(Name = "getScreenMedia")]
-        public void cefGetScreenMedia(JavaScriptPluginCallback callback)
+        public void cefGetScreenMedia(JObject arguments, JavaScriptPluginCallback callback)
         {
             var mainWindow = (Window)this.application.WindowManager.AllWindows[0];
-
             var showDialog = new Action(() =>
             {
-                var window = new MediaStreamPicker.MediaStreamPicker();
-                MediaStreamPicker.MediaStreamPickerViewModel vm = new MediaStreamPicker.MediaStreamPickerViewModel(window);
+
+                string[] sources = null;
+
+                if (arguments != null) {
+                    var values = JsonConvert.DeserializeObject<System.Collections.Generic.Dictionary<string, string[]>>(arguments.ToString());
+                    values.TryGetValue("sources", out sources);
+                }
+
+                var window = new MediaStreamPicker.MediaStreamPicker(sources);
+
+
+                MediaStreamPicker.MediaStreamPickerViewModel vm = new MediaStreamPicker.MediaStreamPickerViewModel(window, sources);
                 window.DataContext = vm;
 
                 EventHandler requestCloseHandler = (sender, args) =>

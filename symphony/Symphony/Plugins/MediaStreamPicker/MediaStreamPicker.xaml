@@ -13,6 +13,27 @@
             <Setter Property="Margin" Value="4,0,0,0" />
             <Setter Property="MinWidth" Value="75" />
         </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Margin" Value="0,0,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="SelectedIndex" Value="{Binding SelectedIndex, Mode=TwoWay}" />
+        </Style>
+        <DataTemplate x:Key="pickerTemplate" DataType="{x:Type local:Img}">
+            <StackPanel Margin="0,5,0,5" Width="180" Height="180">
+                <Image Source="{Binding ImageSource}" Width="160" Height="160">
+                    <Image.Effect>
+                        <DropShadowEffect BlurRadius="14" Direction="225" Color="#FFB6C2CB"/>
+                    </Image.Effect>
+                </Image>
+                <TextBlock TextTrimming="CharacterEllipsis" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" 
+                                       Text="{Binding Str}"/>
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -21,42 +42,45 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label>Choose what you'd like to share</Label>
-        <ListBox Margin="10,10,10,5"
-                 HorizontalAlignment="Stretch"
-                 ScrollViewer.CanContentScroll="True" 
-                 ScrollViewer.VerticalScrollBarVisibility="Visible"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                 ItemsSource="{Binding Streams, Mode=OneWay}"
-                 SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
-                 Grid.Row="1">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="{x:Type local:Img}">
-                    <StackPanel Margin="0,5,0,5" Width="180" Height="180">
-                        <Image Source="{Binding ImageSource}" Width="160" Height="160">
-                            <Image.Effect>
-                                <DropShadowEffect BlurRadius="14" Direction="225" Color="#FFB6C2CB"/>
-                            </Image.Effect>
-                        </Image>
-                        <TextBlock TextTrimming="CharacterEllipsis" 
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center" 
-                                   Text="{Binding Str}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <TabControl x:Name="ContentSharePicker" Grid.Row="1" Margin="10,10,10,5" 
+                    HorizontalAlignment="Stretch" 
+                    SelectedIndex="{Binding SelectedTab, Mode=TwoWay}"
+            >
+            <TabItem x:Name="ScreensTab" Header="Screens">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="ScreenListbox" 
+                        ItemsSource="{Binding ScreenStreams, Mode=OneWay}"
+                        ItemTemplate="{StaticResource pickerTemplate}"                             
+	                >
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="ApplicationsTab" Header="Applications">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="ApplicationsListbox" 
+                        ItemsSource="{Binding WindowStreams, Mode=OneWay}"
+                        ItemTemplate="{StaticResource pickerTemplate}"
+	                >
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
         <StackPanel Grid.Row="2" Margin="0,5,10,5" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button IsEnabled="{Binding IsShareEnabled, Mode=OneWay}" 
                     Command="{Binding Path=ShareCommand}"
                     Style="{StaticResource SystemButton}">Share</Button>
             <Button Command="{Binding Path=CancelCommand}" 
                     Style="{StaticResource SystemButton}">Cancel</Button>
-           
         </StackPanel>
     </Grid>
 </Window>
