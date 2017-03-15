@@ -78,5 +78,13 @@ namespace Symphony.Plugins
                 showDialog.Invoke();
         }
 
+        //RTC-968 - GetRTCCapabilities 
+        [JavaScriptPluginMember(Name = "getRtcCapabilities")]
+        public JObject GetRtcCapabilities()
+        {
+            var json = new JObject();
+            json["allowSources"] = true;
+            return json;
+        }
     }
 }
