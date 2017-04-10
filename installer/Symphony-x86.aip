@@ -406,7 +406,7 @@
     <ROW Action="KillRenderer" Sequence="55"/>
     <ROW Action="AI_DATA_SETTER" Sequence="54"/>
     <ROW Action="AI_SETMIXINSTLOCATION" Sequence="749"/>
-    <ROW Action="Paragon.AppPackager.exe" Condition="( NOT Installed ) AND ( PODURL &lt;&gt; &quot;&quot; )" Sequence="5969"/>
+    <ROW Action="Paragon.AppPackager.exe" Condition="( NOT Installed ) AND ( POD_URL &lt;&gt; &quot;&quot; )" Sequence="5969"/>
     <ROW Action="AI_XmlInstall" Condition="(REMOVE &lt;&gt; &quot;ALL&quot;)" Sequence="5102"/>
     <ROW Action="AI_DATA_SETTER_4" Condition="(REMOVE &lt;&gt; &quot;ALL&quot;)" Sequence="5101"/>
     <ROW Action="AI_XmlUninstall" Condition="(REMOVE)" Sequence="3102"/>
