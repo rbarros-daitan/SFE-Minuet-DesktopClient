@@ -69,11 +69,29 @@ namespace Symphony.Plugins.MediaStreamPicker
 
         public static IList<EnumScreenResult> getScreens()
         {
+
+            uint index = 0;
+            bool found;
+            Dictionary<string, uint> enumDevices = new Dictionary<string, uint>();
+            do
+            {
+                DISPLAY_DEVICE device = new DISPLAY_DEVICE();
+                device.cb = Marshal.SizeOf(device);
+                found = EnumDisplayDevices(null, index, ref device, 0);
+                if (found)
+                {
+                    if ((device.StateFlags & DisplayDeviceStateFlags.AttachedToDesktop) == DisplayDeviceStateFlags.AttachedToDesktop)
+                        enumDevices.Add(device.DeviceName, index);
+
+                    index++;
+                }
+            } while (found);
+
             IList<EnumScreenResult> results = new List<EnumScreenResult>();
 
             Screen[] screens = Screen.AllScreens;
 
-            uint id = 0;
+            int screenIndex = 0;
             foreach (Screen screen in screens)
             {
                 var bmpScreenshot = new Bitmap(screen.Bounds.Width,
@@ -96,10 +114,15 @@ namespace Symphony.Plugins.MediaStreamPicker
                 if (screen.Primary && screens.Length == 1)
                     title = "Entire Screen";
                 else
-                    title = "Screen " + (id + 1);
-                
-                results.Add(new EnumScreenResult(id, title, bitmapSrc));
-                id++;
+                    title = "Screen " + (screenIndex + 1);
+
+                if (enumDevices.ContainsKey(screen.DeviceName))
+                {
+                    uint id = enumDevices[screen.DeviceName];
+                    results.Add(new EnumScreenResult(id, title, bitmapSrc));
+                }
+
+                screenIndex++;
             }
 
             return results;
