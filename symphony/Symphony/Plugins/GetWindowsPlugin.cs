@@ -4,6 +4,7 @@ using System;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Symphony.Win32;
 
 namespace Symphony.Plugins
 {
@@ -40,6 +41,19 @@ namespace Symphony.Plugins
                     values.TryGetValue("sources", out sources);
                 }
 
+                //RTC-1403 - do not show app picker if OS is Windows 7 & AERO Theme is off.
+                bool aeroEnabled;
+                NativeMethods.DwmIsCompositionEnabled(out aeroEnabled);
+
+                if (System.Environment.OSVersion.Version.Major <= 6 && System.Environment.OSVersion.Version.Minor <= 1 && !aeroEnabled)
+                {
+                    var sourcesList = new List<string>(sources);
+                    if (sourcesList.Contains("window"))
+                    {
+                        sourcesList.RemoveAt(sourcesList.IndexOf("window"));
+                        sources = sourcesList.ToArray();
+                    }
+                }
                 var window = new MediaStreamPicker.MediaStreamPicker(sources);
 
 

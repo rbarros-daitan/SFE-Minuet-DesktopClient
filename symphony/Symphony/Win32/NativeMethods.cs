@@ -65,6 +65,9 @@ namespace Symphony.Win32
         [DllImport("kernel32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)] 
         public static extern bool CloseHandle(IntPtr hObject);
+
+        [DllImport("dwmapi.dll", EntryPoint = "DwmIsCompositionEnabled")]
+        public static extern int DwmIsCompositionEnabled(out bool enabled);
         
     }
 }
