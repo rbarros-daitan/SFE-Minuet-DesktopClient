@@ -41,6 +41,10 @@ namespace Symphony.Plugins
                     values.TryGetValue("sources", out sources);
                 }
 
+                if (sources == null || sources.Length == 0) {
+                    sources = new string[]{ "screen", "window" };
+                }
+
                 //RTC-1403 - do not show app picker if OS is Windows 7 & AERO Theme is off.
                 bool aeroEnabled;
                 NativeMethods.DwmIsCompositionEnabled(out aeroEnabled);
@@ -92,12 +96,12 @@ namespace Symphony.Plugins
                 showDialog.Invoke();
         }
 
-        //RTC-968 - GetRTCCapabilities 
+        //RTC-968 - GetRTCCapabilities
         [JavaScriptPluginMember(Name = "getRtcCapabilities")]
         public JObject GetRtcCapabilities()
         {
             var json = new JObject();
-            json["allowSources"] = true;
+            json["allowMediaSources"] = true;
             return json;
         }
     }
