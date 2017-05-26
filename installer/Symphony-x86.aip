@@ -384,7 +384,7 @@
     <ROW Action="KillParagon_1" Type="1" Source="aicustact.dll" Target="StopProcess" AdditionalSeq="AI_DATA_SETTER_3"/>
     <ROW Action="KillRenderer" Type="1" Source="aicustact.dll" Target="StopProcess" Options="1" AdditionalSeq="AI_DATA_SETTER"/>
     <ROW Action="KillRenderer_1" Type="1" Source="aicustact.dll" Target="StopProcess" AdditionalSeq="AI_DATA_SETTER_1"/>
-    <ROW Action="Paragon.AppPackager.exe" Type="3602" Source="Paragon.AppPackager.exe" Target="--u:[POD_URL] &quot;--p:[#Symphony.pgx]&quot;"/>
+    <ROW Action="Paragon.AppPackager.exe" Type="3602" Source="Paragon.AppPackager.exe" Target="&quot;--u=[POD_URL]&quot; &quot;--p=[#Symphony.pgx]&quot;"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[AI_UserProgramFiles][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
