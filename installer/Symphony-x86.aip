@@ -10,6 +10,7 @@
     <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName]"/>
     <ROW Property="AI_ThemeStyle" Value="default" MsiKey="AI_ThemeStyle"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
+    <ROW Property="ALLUSERS" Value="1" MultiBuildValue="DefaultBuild:2"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPHELPLINK" Value="http://www.symphony.com"/>
     <ROW Property="ARPNOREPAIR" Value="1"/>
@@ -178,9 +179,6 @@
     <ROW File="window.ico" Component_="cef.pak" FileName="window.ico" Attributes="0" SourcePath="..\vendor\SFE-Minuet-DesktopClient\bin\paragon\window.ico" SelfReg="false" NextFile="Xilium.CefGlue.dll"/>
     <ROW File="zhCN.pak" Component_="am.pak" FileName="zh-CN.pak" Attributes="0" SourcePath="..\vendor\SFE-Minuet-DesktopClient\bin\paragon\locales\zh-CN.pak" SelfReg="false" NextFile="zhTW.pak"/>
     <ROW File="zhTW.pak" Component_="am.pak" FileName="zh-TW.pak" Attributes="0" SourcePath="..\vendor\SFE-Minuet-DesktopClient\bin\paragon\locales\zh-TW.pak" SelfReg="false" NextFile="chrome_elf.dll"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.custcomp.AiPropertyAliasComponent">
-    <ROW AliasRowId="ALLUSERS" AliasRowOperation="2" Value="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" Languages="en" InstallationType="4" UseLargeSchema="true"/>
