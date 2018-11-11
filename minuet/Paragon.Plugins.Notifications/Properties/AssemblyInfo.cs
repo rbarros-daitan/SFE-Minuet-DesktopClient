@@ -5,5 +5,5 @@ using System.Windows;
 [assembly: AssemblyTitle("Paragon.Plugins.Notifications")]
 [assembly: AssemblyDescription("Notifications plugin")]
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
-[assembly: AssemblyVersion("3.3.0.0")]
-[assembly: AssemblyFileVersion("3.3.0.0")]
+[assembly: AssemblyVersion("1.52.1")]
+[assembly: AssemblyFileVersion("1.52.1")]
