@@ -31,8 +31,6 @@ c2cs_types = {
     'void': 'void',
     'char': 'byte',
     'int': 'int',
-    'int16': 'short',
-    'uint16': 'ushort',
     'int32': 'int',
     'uint32': 'uint',
     'int64': 'long',
