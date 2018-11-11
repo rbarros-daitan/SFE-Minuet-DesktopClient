@@ -119,7 +119,6 @@ namespace Paragon.Runtime
 
                     var settings = new CefSettings
                     {
-                        SingleProcess = false,
                         MultiThreadedMessageLoop = true,
                         IgnoreCertificateErrors = ignoreCertificateErrors,
                         LogSeverity = CefLogSeverity.Default,

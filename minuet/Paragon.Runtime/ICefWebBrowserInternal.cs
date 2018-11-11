@@ -43,7 +43,7 @@ namespace Paragon.Runtime
 
         void OnProtocolExecution(ProtocolExecutionEventArgs ea);
 
-        bool OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool isRedirect);
+        bool OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool userGesture, bool isRedirect);
 
         bool OnGetAuthCredentials(CefBrowser browser, CefFrame frame, bool isProxy, string host, int port, string realm, string scheme, CefAuthCallback callback);
     }

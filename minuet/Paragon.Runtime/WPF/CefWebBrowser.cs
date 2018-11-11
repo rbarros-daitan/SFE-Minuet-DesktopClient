@@ -851,7 +851,7 @@ namespace Paragon.Runtime.WPF
             }
         }
 
-        bool ICefWebBrowserInternal.OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool isRedirect)
+        bool ICefWebBrowserInternal.OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool userGesture, bool isRedirect)
         {
             string scheme = null;
             try

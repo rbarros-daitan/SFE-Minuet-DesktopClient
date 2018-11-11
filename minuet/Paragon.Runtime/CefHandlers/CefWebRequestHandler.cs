@@ -45,9 +45,9 @@ namespace Paragon.Runtime
             return (ea.Cancel ? CefReturnValue.Cancel : CefReturnValue.Continue);
         }
 
-        protected override bool OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool isRedirect)
+        protected override bool OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool userGesture, bool isRedirect)
         {
-            return _core.OnBeforeBrowse(browser, frame, request, isRedirect);
+            return _core.OnBeforeBrowse(browser, frame, request, userGesture, isRedirect);
         }
 
         protected override void OnProtocolExecution(CefBrowser browser, string url, out bool allowOSExecution)

@@ -18,14 +18,6 @@
         }
 
         /// <summary>
-        /// Set to <c>true</c> to use a single process for the browser and renderer. This
-        /// run mode is not officially supported by Chromium and is less stable than
-        /// the multi-process default. Also configurable using the "single-process"
-        /// command-line switch.
-        /// </summary>
-        public bool SingleProcess { get; set; }
-
-        /// <summary>
         /// Set to <c>true</c> to disable the sandbox for sub-processes. See
         /// cef_sandbox_win.h for requirements to enable the sandbox on Windows. Also
         /// configurable using the "no-sandbox" command-line switch.
@@ -55,7 +47,7 @@
         /// Set to <c>true</c> to have the browser process message loop run in a separate
         /// thread. If <c>false</c> than the CefDoMessageLoopWork() function must be
         /// called from your application message loop. This option is only supported on
-        /// Windows.
+        /// Windows and Linux.
         /// </summary>
         public bool MultiThreadedMessageLoop { get; set; }
 
@@ -271,7 +263,6 @@
         internal cef_settings_t* ToNative()
         {
             var ptr = cef_settings_t.Alloc();
-            ptr->single_process = SingleProcess ? 1 : 0;
             ptr->no_sandbox = NoSandbox ? 1 : 0;
             cef_string_t.Copy(BrowserSubprocessPath, &ptr->browser_subprocess_path);
             cef_string_t.Copy(FrameworkDirPath, &ptr->framework_dir_path);
