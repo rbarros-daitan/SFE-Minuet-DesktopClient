@@ -794,6 +794,11 @@ namespace Paragon.Runtime.WPF
             {
                 if (keyEvent.EventType == CefKeyEventType.RawKeyDown)
                 {
+
+                    if (keyEvent.WindowsKeyCode == 116)
+                    {
+                        Logger.Info("Key pressed: " + keyEvent.WindowsKeyCode);
+                    }
                     var keys = (Keys)keyEvent.WindowsKeyCode;
                     var source = PresentationSource.FromDependencyObject(this);
                     var key = KeyInterop.KeyFromVirtualKey((int)keys);
@@ -851,7 +856,17 @@ namespace Paragon.Runtime.WPF
             }
         }
 
-        bool ICefWebBrowserInternal.OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool isRedirect)
+        bool ICefWebBrowserInternal.OnOpenUrlFromTab(CefBrowser browser, CefFrame frame, string targetUrl, CefWindowOpenDisposition targetDisposition, bool userGesture)
+        {
+            CefUrlParts parts;
+            if (CefRuntime.ParseUrl(targetUrl, out parts))
+            {
+                System.Diagnostics.Process.Start(Win32Api.GetDefaultBrowserPath(), targetUrl);
+            }
+            return true;
+        }
+
+        bool ICefWebBrowserInternal.OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool userGesture, bool isRedirect)
         {
             string scheme = null;
             try

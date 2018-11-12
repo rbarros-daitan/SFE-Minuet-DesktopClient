@@ -21,10 +21,11 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Windows;
+using System.Windows.Interop;
 using Paragon.Plugins;
+using Paragon.Runtime.Properties;
 using Xilium.CefGlue;
-using System.IO.IsolatedStorage;
-
 
 namespace Paragon.Runtime
 {
@@ -36,7 +37,6 @@ namespace Paragon.Runtime
         private static int _cefInitializing;
         private static CefBrowserApplication _cefApp;
         private static int _initThread;
-        private static string _cachePath;
 
         /// <summary>
         /// Indicates if initialized
@@ -96,9 +96,6 @@ namespace Paragon.Runtime
                         cachePath = Path.Combine(cachePath, "cache");
                     }
 
-                    _cachePath = cachePath;
-                    HandleCache(true);
-
                     var rendererPath = paragonPath ?? Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "paragon.renderer.exe");
                     if (!File.Exists(rendererPath))
                     {
@@ -119,7 +116,6 @@ namespace Paragon.Runtime
 
                     var settings = new CefSettings
                     {
-                        SingleProcess = false,
                         MultiThreadedMessageLoop = true,
                         IgnoreCertificateErrors = ignoreCertificateErrors,
                         LogSeverity = CefLogSeverity.Default,
@@ -201,75 +197,6 @@ namespace Paragon.Runtime
             }
         }
 
-        public static void ForceClearCacheOnStart()
-        {
-            try
-            {
-                string StorageDirectoryName = "paragon.window.clearcache";
-                var fileName = ("clearcache");
-                string _storageFilePath = Path.Combine(StorageDirectoryName, fileName);
-                IsolatedStorageFile _store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
-                _store.CreateDirectory(StorageDirectoryName);
-
-                using (var writer = new StreamWriter(new IsolatedStorageFileStream(_storageFilePath, FileMode.Create, FileAccess.Write, _store)))
-                {
-                    writer.Write("forced");
-                    writer.Flush();
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Error("Error creating isolated storage file for saving forced clear cache information", e);
-                return;
-            }
-
-        }
-        private static void HandleCache(bool isLaunching)
-        {
-            try
-            {
-                bool shouldClearCache = true;
-                string StorageDirectoryName = "paragon.window.clearcache";
-                var fileName = ("clearcache");
-                string _storageFilePath = Path.Combine(StorageDirectoryName, fileName);
-                IsolatedStorageFile _store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
-                _store.CreateDirectory(StorageDirectoryName);
-                
-                string currentVal;
-
-                using (var reader = new StreamReader(new IsolatedStorageFileStream(_storageFilePath, FileMode.OpenOrCreate, _store)))
-                {
-                    currentVal = reader.ReadToEnd();
-                }
-
-                if (isLaunching)
-                {
-                    if (string.IsNullOrEmpty(currentVal) || !Boolean.TryParse(currentVal, out shouldClearCache) || shouldClearCache)
-                    {
-                        System.IO.Directory.Delete(_cachePath, true);
-                    }
-                    using (var writer = new StreamWriter(new IsolatedStorageFileStream(_storageFilePath, FileMode.Create, FileAccess.Write, _store)))
-                    {
-                        writer.Write(Boolean.TrueString);
-                        writer.Flush();
-                    }
-                }
-                else if (!currentVal.Equals("forced"))
-                {
-                    using (var writer = new StreamWriter(new IsolatedStorageFileStream(_storageFilePath, FileMode.Create, FileAccess.Write, _store)))
-                    {
-                        writer.Write(Boolean.FalseString);
-                        writer.Flush();
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Error("Error creating isolated storage file for saving clear cache information", e);
-                return;
-            }
-        }
-
         private static void OnRenderProcessInitialize(object sender, RenderProcessInitEventArgs e)
         {
             if (RenderProcessInitialize != null)
@@ -308,8 +235,6 @@ namespace Paragon.Runtime
                     CefRuntime.Shutdown();
                 }
             };
-
-            HandleCache(false);
 
             var currentThreadId = Thread.CurrentThread.ManagedThreadId;
             if (currentThreadId != _initThread)

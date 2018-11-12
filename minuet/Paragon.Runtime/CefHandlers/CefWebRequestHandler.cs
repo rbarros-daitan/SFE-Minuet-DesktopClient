@@ -38,6 +38,11 @@ namespace Paragon.Runtime
             _core.OnRenderProcessTerminated(new RenderProcessTerminatedEventArgs(browser, status));
         }
 
+        protected override bool OnOpenUrlFromTab(CefBrowser browser, CefFrame frame, string targetUrl, CefWindowOpenDisposition targetDisposition, bool userGesture)
+        {
+            return _core.OnOpenUrlFromTab(browser, frame, targetUrl, targetDisposition, userGesture);
+        }
+
         protected override CefReturnValue OnBeforeResourceLoad(CefBrowser browser, CefFrame frame, CefRequest request, CefRequestCallback callback)
         {
             var ea = new ResourceLoadEventArgs(request.Url, request.ResourceType, callback);
@@ -45,9 +50,9 @@ namespace Paragon.Runtime
             return (ea.Cancel ? CefReturnValue.Cancel : CefReturnValue.Continue);
         }
 
-        protected override bool OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool isRedirect)
+        protected override bool OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool userGesture, bool isRedirect)
         {
-            return _core.OnBeforeBrowse(browser, frame, request, isRedirect);
+            return _core.OnBeforeBrowse(browser, frame, request, userGesture, isRedirect);
         }
 
         protected override void OnProtocolExecution(CefBrowser browser, string url, out bool allowOSExecution)

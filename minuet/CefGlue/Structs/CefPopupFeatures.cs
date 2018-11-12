@@ -82,7 +82,6 @@
             }
         }
 
-
         public bool ScrollbarsVisible
         {
             get
@@ -91,8 +90,6 @@
                 return _self->scrollbarsVisible != 0;
             }
         }
-
-
 
         private void ThrowIfObjectDisposed()
         {

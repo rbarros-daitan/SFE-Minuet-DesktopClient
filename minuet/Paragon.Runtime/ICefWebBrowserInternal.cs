@@ -35,6 +35,7 @@ namespace Paragon.Runtime
         void OnContextMenuCommand(ContextMenuCommandEventArgs args);
         void OnDownloadUpdated(DownloadUpdatedEventArgs args);
         bool OnProcessMessageReceived(CefBrowser browser, CefProcessMessage message);
+        bool OnOpenUrlFromTab(CefBrowser browser, CefFrame frame, string targetUrl, CefWindowOpenDisposition targetDisposition, bool userGesture);
         void OnBeforeResourceLoad(ResourceLoadEventArgs ea);
         void OnJSDialog(JsDialogEventArgs ea);
         void OnBeforeUnloadDialog(UnloadDialogEventArgs ea);
@@ -43,7 +44,7 @@ namespace Paragon.Runtime
 
         void OnProtocolExecution(ProtocolExecutionEventArgs ea);
 
-        bool OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool isRedirect);
+        bool OnBeforeBrowse(CefBrowser browser, CefFrame frame, CefRequest request, bool userGesture, bool isRedirect);
 
         bool OnGetAuthCredentials(CefBrowser browser, CefFrame frame, bool isProxy, string host, int port, string realm, string scheme, CefAuthCallback callback);
     }

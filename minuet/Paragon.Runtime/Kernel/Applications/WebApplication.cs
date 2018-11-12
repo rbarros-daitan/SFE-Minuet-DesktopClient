@@ -412,16 +412,7 @@ namespace Paragon.Runtime.Kernel.Applications
 
         protected virtual void OnLaunchTimerExpired(object state)
         {
-            // retry 3 times just in case chrome is in weird state. 
-            if (_refreshAttempts < 3)
-            {
-                // Tried to refresh but the window is not up yet. Lets do it one more time. 
-                Refresh(RefreshUrl);
-            }
-            else
-            {
-                Close();
-            }
+            Close();
         }
 
         private void CloseEventPage(bool closeApp)
@@ -559,7 +550,7 @@ namespace Paragon.Runtime.Kernel.Applications
             {
                 _eventPageBrowser.Close();
                 _eventPageBrowser = null;
-            }
+            }            
         }
 
         public void Refresh(string url)

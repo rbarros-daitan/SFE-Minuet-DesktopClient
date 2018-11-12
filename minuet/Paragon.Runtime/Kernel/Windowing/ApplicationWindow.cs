@@ -69,6 +69,7 @@ namespace Paragon.Runtime.Kernel.Windowing
         private JavaScriptPluginCallback _closeHandler;
         private AutoSaveWindowPositionBehavior _autoSaveWindowPositionBehavior;
         private bool _taskbarYellowState;
+        private int _reloadAttempts;
 
         private Grid _mainPanel;
 
@@ -80,6 +81,7 @@ namespace Paragon.Runtime.Kernel.Windowing
             Loaded += OnLoaded;
             var nativeWindow = new NativeApplicationWindow(this);
             nativeWindow.AddHook(WndProc);
+            _reloadAttempts = 0;
         }
 
         void ApplicationWindow_Activated(object sender, EventArgs e)
@@ -549,31 +551,28 @@ namespace Paragon.Runtime.Kernel.Windowing
             }, true);
         }
 
-        [JavaScriptPluginMember(Name = "refreshClearCache")]
-        public void RefreshWindowClearCache()
-        {
-            ParagonRuntime.ForceClearCacheOnStart();
-            Logger.Info("Refresh ignore and clear cache");
-            DispatchIfRequired(() => _browser.Reload(true), true);
-        }
-
         [JavaScriptPluginMember(Name = "refresh")]
         public void RefreshWindow(bool ignoreCache = true)
         {
-            ParagonRuntime.ForceClearCacheOnStart();
-            if (GetId() == MAIN_WINDOW_ID)
+            if (_reloadAttempts++ < 2)
             {
-                // Refreshing should restart this app, let WebApplication know about it.
-                WebApplication runningApp = (WebApplication)ApplicationManager.GetInstance().AllApplicaions.FirstOrDefault();
-                Logger.Info("Restart Renderer process.");
-                runningApp.Refresh(_browser.Source);
+                DispatchIfRequired(() => _browser.Reload(ignoreCache), true);
             }
-            else
-            {
-                foreach (var applicationWindow in _windowManager.AllWindows)
+            else {
+                _reloadAttempts = 0;
+                if (GetId() == MAIN_WINDOW_ID)
                 {
-                    if (applicationWindow.GetId() == MAIN_WINDOW_ID)
-                        applicationWindow.RefreshWindow(ignoreCache);
+                    // Refreshing should restart this app, let weapplication know about it.
+                    WebApplication runningApp = (WebApplication)ApplicationManager.GetInstance().AllApplicaions.FirstOrDefault();
+                    runningApp.Refresh(_browser.Source);
+                }
+                else
+                {
+                    foreach (var applicationWindow in _windowManager.AllWindows)
+                    {
+                        if (applicationWindow.GetId() == MAIN_WINDOW_ID)
+                            applicationWindow.RefreshWindow(ignoreCache);
+                    }
                 }
             }
         }
@@ -831,7 +830,7 @@ namespace Paragon.Runtime.Kernel.Windowing
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
         {
-            HandleKeyPress(e.Key);
+            HandleKeyPress(e);
         }
 
         [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.UnmanagedCode)]
@@ -1500,7 +1499,7 @@ namespace Paragon.Runtime.Kernel.Windowing
 
         private void OnBrowserPreviewKeyDown(object sender, KeyEventArgs e)
         {
-            HandleKeyPress(e.Key);
+            HandleKeyPress(e);
         }
 
         private void OnJavaScriptDialog(object sender, JsDialogEventArgs ea)
@@ -1697,13 +1696,13 @@ namespace Paragon.Runtime.Kernel.Windowing
             _tools = null;
         }
 
-        private void HandleKeyPress(Key key)
+        private void HandleKeyPress(KeyEventArgs key)
         {
-            switch (key)
+            switch (key.Key)
             {
                 case Key.J:
-                    if ((key & Key.LeftCtrl) == Key.LeftCtrl &&
-                        (key & Key.LeftCtrl) == Key.LeftShift)
+                    if ((key.Key & Key.LeftCtrl) == Key.LeftCtrl &&
+                        (key.Key & Key.LeftCtrl) == Key.LeftShift)
                     {
                         ShowDeveloperTools(new Point(int.MinValue, int.MinValue));
                     }

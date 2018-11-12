@@ -34,6 +34,7 @@ namespace Paragon.Runtime.Kernel.Plugins
     public class ParagonAppWindowPlugin : ParagonPlugin
     {
         private static readonly ILogger Logger = ParagonLogManager.GetLogger();
+
         /// <summary>
         /// The size and position of a window can be specified in a number of different ways.
         /// The most simple option is not specifying anything at all, in which case a default size and platform dependent position will be used.
@@ -73,7 +74,7 @@ namespace Paragon.Runtime.Kernel.Plugins
         [JavaScriptPluginMember, UsedImplicitly]
         public void Create(string startUrl, CreateWindowOptions options, JavaScriptPluginCallback callback)
         {
-            if (Application.RefreshUrl != null) 
+            if( Application.RefreshUrl != null) 
             {
                 startUrl = Application.RefreshUrl;
             }
@@ -95,7 +96,7 @@ namespace Paragon.Runtime.Kernel.Plugins
                         startUrl = uri.ToString();
                         Logger.Info(string.Format("PodUrl at Registry key : {0}", startUrl));
                     }
-                }
+                }            
             }
 
             Logger.Info(string.Format("Create window : {0}", startUrl));
