@@ -20,11 +20,6 @@ namespace Xilium.CefGlue
         Verbose,
 
         /// <summary>
-        /// DEBUG logging.
-        /// </summary>
-        Debug = Verbose,
-
-        /// <summary>
         /// INFO logging.
         /// </summary>
         Info,

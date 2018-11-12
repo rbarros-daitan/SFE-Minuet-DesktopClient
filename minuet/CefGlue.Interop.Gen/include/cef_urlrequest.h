@@ -115,13 +115,6 @@ class CefURLRequest : public virtual CefBaseRefCounted {
   virtual CefRefPtr<CefResponse> GetResponse() = 0;
 
   ///
-  // Returns true if the response body was served from the cache. This includes
-  // responses for which revalidation was required.
-  ///
-  /*--cef()--*/
-  virtual bool ResponseWasCached() = 0;
-
-  ///
   // Cancel the request.
   ///
   /*--cef()--*/
